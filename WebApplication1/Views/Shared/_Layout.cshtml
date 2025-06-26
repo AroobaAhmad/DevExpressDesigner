@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, DevExpress.AspNetCore.Reporting.v24.2
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>SimpleAspNetCoreReportingDesigner</title>
     <link rel="stylesheet" href="~/css/thirdparty.bundle.css" />
@@ -7,11 +10,21 @@
     <script src="~/js/thirdparty.bundle.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <link rel="stylesheet" href="https://cdn.devexpress.com/Reporting/24.2/css/dx-reporting.min.css" />
-    <script src="https://cdn.devexpress.com/Reporting/24.2/js/dx-reporting.min.js"></script>
-
+   
 </head>
 <body>
-@RenderBody()
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <a class="navbar-brand" href="/">📊 Report Portal</a>
+</nav>
+
+<main class="container mt-4">
+    @RenderBody()
+</main>
+
+<footer class="footer bg-light text-center py-3 mt-5">
+    <span class="text-muted">© @DateTime.Now.Year - Report Portal</span>
+</footer>
+
+
 </body>
 </html>

@@ -6,6 +6,8 @@
       "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.common.css",
       "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.light.css",
       "node_modules/@devexpress/analytics-core/dist/css/dx-querybuilder.css",
+      "node_modules/@devexpress/analytics-reporting/dist/css/dx-webdocumentviewer.css",
+      "node_modules/@devexpress/analytics-reporting/dist/css/dx-reportdesigner.css",
       "node_modules/devexpress-dashboard/dist/css/dx-dashboard.light.min.css"
     ],
     "minify": {
@@ -37,6 +39,8 @@
       "node_modules/devextreme-dist/js/dx.all.js",
       "node_modules/@devexpress/analytics-core/dist/js/dx-analytics-core.min.js",
       "node_modules/@devexpress/analytics-core/dist/js/dx-querybuilder.min.js",
+      "node_modules/@devexpress/analytics-reporting/dist/js/dx-webdocumentviewer.min.js",
+      "node_modules/@devexpress/analytics-reporting/dist/js/dx-reportdesigner.min.js",
       "node_modules/devexpress-dashboard/dist/js/dx-dashboard.min.js"
     ],
     "minify": {

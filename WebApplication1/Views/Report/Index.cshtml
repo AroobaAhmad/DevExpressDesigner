@@ -1,0 +1,55 @@
+﻿@model List<WebApplication1.Models.ReportStorage>
+
+<div class="container my-4">
+    <h2 class="mb-4">📋 Available Reports</h2>
+
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th style="width: 50%">📝 Report Name</th>
+                <th style="width: 50%">🎯 Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in Model)
+            {
+                <tr>
+                    <td class="fw-semibold">@report.Url</td>
+                    <td>
+                        <div class="d-flex flex-column flex-md-row align-items-start gap-3">
+
+                            <a class="btn btn-outline-primary btn-sm"
+                               href="@Url.Action("Designer", "Report", new { reportId = report.Url })">
+                                ✏️ Design
+                            </a>
+
+                            <form method="post"
+                                  asp-action="Print"
+                                  asp-controller="Report"
+                                  class="d-flex flex-column flex-md-row gap-3 align-items-start align-items-md-center">
+                                <input type="hidden" name="reportId" value="@report.Url" />
+
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    🖨️ Print
+                                </button>
+
+                                <div class="d-flex flex-row gap-4 ms-md-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="version-@report.Id" value="default" checked id="default-@report.Id" />
+                                        <label class="form-check-label text-success fw-medium" for="default-@report.Id">Default</label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="version-@report.Id" value="latest" id="latest-@report.Id" />
+                                        <label class="form-check-label text-info fw-medium" for="latest-@report.Id">Latest</label>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

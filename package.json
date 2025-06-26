@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "devexpress-reporting": "^24.2.8"
+    "@devexpress/analytics-core": "^24.2.8",
+    "devexpress-reporting": "^24.2.8",
+    "devextreme-dist": "^24.2.8"
   }
 }
