@@ -23,19 +23,30 @@ public class SqlReportStorage : ReportStorageWebExtension
                && url.IndexOfAny(Path.GetInvalidFileNameChars()) < 0
                && !url.Contains("/");
     }
-    public override byte[] GetData(string url) // loads latest updated
+    public override byte[] GetData(string url)
     {
+        // Supports format: "ReportName::default" or "ReportName::latest"
+        var parts = url.Split("::", StringSplitOptions.RemoveEmptyEntries);
+        var baseUrl = parts[0];
+        var mode = parts.Length > 1 ? parts[1].ToLower() : "default";
+
         using var conn = new SqlConnection(_connectionString);
         conn.Open();
 
-        var cmd = new SqlCommand("SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url ORDER BY IsDefault ASC, UpdatedAt DESC", conn);
-        cmd.Parameters.AddWithValue("@Url", url);
+        string query = mode == "latest"
+            ? "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 0 ORDER BY UpdatedAt DESC"
+            : "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 1 ORDER BY UpdatedAt DESC";
+
+        using var cmd = new SqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@Url", baseUrl);
 
         var result = cmd.ExecuteScalar();
+
         return result is byte[] layoutBytes
             ? layoutBytes
-            : throw new FaultException($"Report '{url}' not found");
+            : throw new FaultException($"Report '{baseUrl}' not found with mode '{mode}'.");
     }
+
 
 
     public override Dictionary<string, string> GetUrls()
@@ -68,12 +79,13 @@ public class SqlReportStorage : ReportStorageWebExtension
         conn.Open();
 
         var cmd = new SqlCommand(@"
-        IF EXISTS (SELECT 1 FROM ReportStorage WHERE Url = @Url AND IsDefault = 0)
-            UPDATE ReportStorage SET ReportLayout = @Layout, UpdatedAt = GETDATE() 
+         IF EXISTS (SELECT 1 FROM ReportStorage WHERE Url = @Url AND IsDefault = 0)
+            UPDATE ReportStorage 
+            SET ReportLayout = @Layout, UpdatedAt = GETDATE() 
             WHERE Url = @Url AND IsDefault = 0
         ELSE
-            INSERT INTO ReportStorage (Url, ReportLayout, IsDefault) 
-            VALUES (@Url, @Layout, 0)", conn);
+            INSERT INTO ReportStorage (Url, ReportLayout, IsDefault, UpdatedAt) 
+            VALUES (@Url, @Layout, 0, GETDATE())", conn);
 
         cmd.Parameters.AddWithValue("@Url", url);
         cmd.Parameters.AddWithValue("@Layout", layoutBytes);
@@ -92,7 +104,8 @@ public class SqlReportStorage : ReportStorageWebExtension
         using var conn = new SqlConnection(_connectionString);
         conn.Open();
 
-        using var cmd = new SqlCommand("INSERT INTO ReportStorage (Url, ReportLayout) VALUES (@Url, @Layout)", conn);
+        using var cmd = new SqlCommand("INSERT INTO ReportStorage (Url, ReportLayout, IsDefault, UpdatedAt, CreatedAt)" +
+                                       " VALUES (@Url, @Layout, 0, GETDATE(), GETDATE())", conn);
         cmd.Parameters.AddWithValue("@Url", defaultUrl);
         cmd.Parameters.AddWithValue("@Layout", layoutData);
         cmd.ExecuteNonQuery();

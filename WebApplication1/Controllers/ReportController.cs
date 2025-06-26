@@ -26,14 +26,12 @@ public class ReportController : Controller
         return View(defaultReports);
     }
 
-    // 📤 Redirect to DevExpress designer
-    public IActionResult Designer(string reportId)
+    public IActionResult Designer(string reportId, string version = "default")
     {
         // This just redirects to the DevExpress Designer page
-        return RedirectToAction("Designer", "DevExpressDesigner", new { reportId });
+        return RedirectToAction("Designer", "DevExpressDesigner", new { reportId, version });
     }
 
-    // 🖨️ Print based on version selection (default or latest)
     [HttpPost]
     public IActionResult Print(string reportId, string version)
     {
