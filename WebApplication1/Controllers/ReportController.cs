@@ -1,58 +1,46 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DevExpress.XtraReports.UI;
-using System.IO;
-using System.Linq;
+﻿using DevExpress.XtraReports.UI;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Services;
+
+namespace WebApplication1.Controllers;
 
 public class ReportController : Controller
 {
-    private readonly AppDbContext _db;
+    private readonly IReportService _reportService;
 
-    public ReportController(AppDbContext db)
+    public ReportController(AppDbContext db, IReportService report)
     {
-        _db = db;
+        _reportService = report;
     }
 
-    // 📄 Show default reports on home page
+    // Show default reports on home page
     public IActionResult Index()
     {
-        var defaultReports = _db.ReportStorage
-            .Where(r => r.IsDefault)
-            .GroupBy(r => r.Url)
-            .Select(g => g.First()) // get one per Url
-            .ToList();
+        var defaultReports = _reportService.GetDefaultReports();
 
         return View(defaultReports);
     }
 
     public IActionResult Designer(string reportId, string version = "default")
     {
-        // This just redirects to the DevExpress Designer page
+        // redirects to the DevExpress Designer page
         return RedirectToAction("Designer", "DevExpressDesigner", new { reportId, version });
     }
 
     [HttpPost]
-    public IActionResult Print(string reportId, string version)
+    public IActionResult Print(string reportUrl, string version)
     {
         var useDefault = version == "default";
 
-        var reportEntry = _db.ReportStorage
-            .Where(r => r.Url == reportId && r.IsDefault == useDefault)
-            .OrderByDescending(r => r.UpdatedAt)
-            .FirstOrDefault();
+        var reportEntry = _reportService.GetReport(reportUrl, useDefault);
 
         if (reportEntry == null)
             return NotFound("Report layout not found");
 
         var report = new XtraReport();
-        using var layoutStream = new MemoryStream(reportEntry.ReportLayout);
-        report.LoadLayoutFromXml(layoutStream);
-        report.CreateDocument();
+        var pdfStream = _reportService.GeneratePdf(reportEntry.ReportLayout);
 
-        using var pdfStream = new MemoryStream();
-        report.ExportToPdf(pdfStream);
-
-        return File(pdfStream.ToArray(), "application/pdf", $"{reportId}.pdf");
+        return File(pdfStream, "application/pdf", $"{reportUrl}.pdf");
     }
 }

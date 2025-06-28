@@ -6,36 +6,36 @@ using WebApplication1.Models;
 namespace WebApplication1.Services
 {
    
-    public class ReportService : IReportService
+    public class ReportService(AppDbContext db) : IReportService
     {
-        private readonly AppDbContext _db;
-
-        public ReportService(AppDbContext db)
-        {
-            _db = db;
-        }
-
-        // ✅ For home page listing
+        // for home page 
         public List<ReportStorage> GetDefaultReports()
         {
-            return _db.ReportStorage
+            return db.ReportStorage
                 .Where(r => r.IsDefault)
                 .GroupBy(r => r.Url)
                 .Select(g => g.First())
                 .ToList();
         }
 
-        // ✅ Load layout for printing/designer
+        // for printing/designer
         public byte[]? GetReportLayout(string reportName, bool isDefault)
         {
-            return _db.ReportStorage
+            return db.ReportStorage
                 .Where(r => r.Url == reportName && r.IsDefault == isDefault)
                 .OrderByDescending(r => r.UpdatedAt)
                 .Select(r => r.ReportLayout)
                 .FirstOrDefault();
         }
+        public ReportStorage? GetReport(string reportName, bool isDefault)
+        {
+            return db.ReportStorage
+                .Where(r => r.Url == reportName && r.IsDefault == isDefault)
+                .OrderByDescending(r => r.UpdatedAt)
+                .FirstOrDefault();
+        }
 
-        // ✅ Export loaded layout to PDF
+        // for export to PDF
         public byte[] GeneratePdf(byte[] layout)
         {
             var report = new XtraReport();
@@ -48,10 +48,10 @@ namespace WebApplication1.Services
             return ms.ToArray();
         }
 
-        // ✅ Save a layout (used by custom upload / internal logic)
+        // Save a layout 
         public void SaveLayout(string reportName, byte[] layout, bool isDefault)
         {
-            var existing = _db.ReportStorage
+            var existing = db.ReportStorage
                 .FirstOrDefault(r => r.Url == reportName && r.IsDefault == isDefault);
 
             if (existing != null)
@@ -61,7 +61,7 @@ namespace WebApplication1.Services
             }
             else
             {
-                _db.ReportStorage.Add(new ReportStorage
+                db.ReportStorage.Add(new ReportStorage
                 {
                     Url = reportName,
                     ReportLayout = layout,
@@ -70,7 +70,7 @@ namespace WebApplication1.Services
                 });
             }
 
-            _db.SaveChanges();
+            db.SaveChanges();
         }
     }
 }

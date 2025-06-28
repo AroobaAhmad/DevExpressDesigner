@@ -1,21 +1,12 @@
-﻿using DevExpress.XtraReports.Web.Extensions;
+﻿using System.Data.SqlClient;
 using DevExpress.XtraReports.UI;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
 using DevExpress.XtraReports.Web.ClientControls;
+using DevExpress.XtraReports.Web.Extensions;
 
-public class SqlReportStorage : ReportStorageWebExtension
+namespace WebApplication1;
+
+public class SqlReportStorage(string? connectionString) : ReportStorageWebExtension
 {
-    private readonly string _connectionString;
-
-    public SqlReportStorage(string connectionString)
-    {
-        _connectionString = connectionString;
-    }
-
     public override bool CanSetData(string url) => true;
     public override bool IsValidUrl(string url)
     {
@@ -25,12 +16,11 @@ public class SqlReportStorage : ReportStorageWebExtension
     }
     public override byte[] GetData(string url)
     {
-        // Supports format: "ReportName::default" or "ReportName::latest"
         var parts = url.Split("::", StringSplitOptions.RemoveEmptyEntries);
         var baseUrl = parts[0];
         var mode = parts.Length > 1 ? parts[1].ToLower() : "default";
 
-        using var conn = new SqlConnection(_connectionString);
+        using var conn = new SqlConnection(connectionString);
         conn.Open();
 
         string query = mode == "latest"
@@ -53,7 +43,7 @@ public class SqlReportStorage : ReportStorageWebExtension
     {
         var dict = new Dictionary<string, string>();
 
-        using var conn = new SqlConnection(_connectionString);
+        using var conn = new SqlConnection(connectionString);
         conn.Open();
 
         var cmd = new SqlCommand("SELECT Url FROM ReportStorage", conn);
@@ -75,7 +65,7 @@ public class SqlReportStorage : ReportStorageWebExtension
         report.SaveLayoutToXml(ms);
         var layoutBytes = ms.ToArray();
 
-        using var conn = new SqlConnection(_connectionString);
+        using var conn = new SqlConnection(connectionString);
         conn.Open();
 
         var cmd = new SqlCommand(@"
@@ -101,7 +91,7 @@ public class SqlReportStorage : ReportStorageWebExtension
         report.SaveLayoutToXml(ms);
         var layoutData = ms.ToArray();
 
-        using var conn = new SqlConnection(_connectionString);
+        using var conn = new SqlConnection(connectionString);
         conn.Open();
 
         using var cmd = new SqlCommand("INSERT INTO ReportStorage (Url, ReportLayout, IsDefault, UpdatedAt, CreatedAt)" +

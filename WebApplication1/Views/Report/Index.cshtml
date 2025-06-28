@@ -22,12 +22,12 @@
                                href="@Url.Action("Designer", "Report", new { reportId = report.Url })">
                                 ✏️ Design
                             </a>
-
+                           
                             <form method="post"
                                   asp-action="Print"
                                   asp-controller="Report"
                                   class="d-flex flex-column flex-md-row gap-3 align-items-start align-items-md-center">
-                                <input type="hidden" name="reportId" value="@report.Url" />
+                                <input type="hidden" name="reportUrl" value="@report.Url" />
 
                                 <button type="submit" class="btn btn-success btn-sm">
                                     🖨️ Print

@@ -2,19 +2,23 @@ using DevExpress.AspNetCore;
 using DevExpress.AspNetCore.Reporting;
 using DevExpress.XtraReports.Web.Extensions;
 using WebApplication1.Models;
-using WebApplication1.Services; // for ReportStorageWebExtension
+using WebApplication1.Services; 
 using Microsoft.EntityFrameworkCore;
+using WebApplication1;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDevExpressControls();
 builder.Services.AddMvc();
 builder.Services.AddScoped<IReportService, ReportService>();
+
 builder.Services.AddScoped<ReportStorageWebExtension>(provider =>
     new SqlReportStorage(builder.Configuration.GetConnectionString("Default")));
+
 var connectionString = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString)); // <-- This should now work
+    options.UseSqlServer(connectionString));
 
 
 builder.Services.ConfigureReportingServices(configurator => {

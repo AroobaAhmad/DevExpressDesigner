@@ -8,6 +8,7 @@ namespace WebApplication1.Services
         byte[]? GetReportLayout(string reportName, bool isDefault);
         byte[] GeneratePdf(byte[] layout);
         void SaveLayout(string reportName, byte[] layout, bool isDefault);
+        ReportStorage? GetReport(string reportName, bool isDefault);
     }
 
 
