@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ADO.Net.Client.Core" Version="1.4.5" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="DevExpress.AspNetCore.Reporting" Version="24.2.8" />
     <PackageReference Include="DevExpress.Xpo" Version="24.2.8" />
@@ -16,6 +17,21 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\devexpress\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Data\EurotracsCleaningDocumentDataSet.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EurotracsCleaningDocumentDataSet.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\EurotracsCleaningDocumentDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EurotracsCleaningDocumentDataSet.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

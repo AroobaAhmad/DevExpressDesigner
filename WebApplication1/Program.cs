@@ -1,17 +1,17 @@
 using DevExpress.AspNetCore;
 using DevExpress.AspNetCore.Reporting;
 using DevExpress.XtraReports.Web.Extensions;
-using WebApplication1.Models;
-using WebApplication1.Services; 
+using DevExpress.XtraReports.Web.WebDocumentViewer;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1;
+using WebApplication1.Models;
+using WebApplication1.Services; 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDevExpressControls();
 builder.Services.AddMvc();
 builder.Services.AddScoped<IReportService, ReportService>();
-
 builder.Services.AddScoped<ReportStorageWebExtension>(provider =>
     new SqlReportStorage(builder.Configuration.GetConnectionString("Default")));
 

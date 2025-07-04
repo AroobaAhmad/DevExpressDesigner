@@ -7,7 +7,7 @@ namespace WebApplication1.Controllers
     {
         public IActionResult Designer(string reportId)
         {
-            ViewBag.ReportName = reportId;
+            ViewBag.ReportName = "EurotracsCleaningDocumentReport";
             return View(); 
         }
     }

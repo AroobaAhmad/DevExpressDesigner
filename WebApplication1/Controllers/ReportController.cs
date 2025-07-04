@@ -1,5 +1,7 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.DocumentServices.ServiceModel.DataContracts;
+using DevExpress.XtraReports.UI;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using WebApplication1.Models;
 using WebApplication1.Services;
 
@@ -17,9 +19,7 @@ public class ReportController : Controller
     // Show default reports on home page
     public IActionResult Index()
     {
-        var defaultReports = _reportService.GetDefaultReports();
-
-        return View(defaultReports);
+        return RedirectToAction("Designer", "DevExpressDesigner");
     }
 
     public IActionResult Designer(string reportId, string version = "default")

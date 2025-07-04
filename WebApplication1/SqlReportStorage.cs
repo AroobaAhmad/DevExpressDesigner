@@ -3,6 +3,7 @@ using DevExpress.XtraReports.Web.ClientControls;
 using DevExpress.XtraReports.Web.Extensions;
 using System;
 using System.Data.SqlClient;
+using WebApplication1.Data;
 using WebApplication1.Reports;
 
 namespace WebApplication1;
@@ -18,9 +19,11 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
     }
     public override byte[] GetData(string url)
     {
+        ReportGenerator generator = new ReportGenerator(); 
+        
         XtraReport report = url.ToLower() switch
         {
-            "testreport" => new TestReport(),
+            "testreport" => generator.GenerateReport(),
             _ => throw new Exception("Unknown report")
         };
 

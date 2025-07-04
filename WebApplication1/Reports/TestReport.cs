@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace WebApplication1.Reports
 {
-    public partial class TestReport : CustomReportImplementation
+    public partial class TestReport : XtraReport
     {
         private const string ReportName = "TestReport";
 
@@ -20,7 +20,7 @@ namespace WebApplication1.Reports
             InitializeComponent();
             SaveLayoutToXml(RepxPath);
         }
-        protected override void InjectEvents()
+        protected void InjectEvents()
         {
             if (FindControl("xrTableCell3", true) is XRLabel label)
             {
