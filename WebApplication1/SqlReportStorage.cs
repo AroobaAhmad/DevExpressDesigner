@@ -1,7 +1,9 @@
-﻿using System.Data.SqlClient;
-using DevExpress.XtraReports.UI;
+﻿using DevExpress.XtraReports.UI;
 using DevExpress.XtraReports.Web.ClientControls;
 using DevExpress.XtraReports.Web.Extensions;
+using System;
+using System.Data.SqlClient;
+using WebApplication1.Reports;
 
 namespace WebApplication1;
 
@@ -16,26 +18,18 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
     }
     public override byte[] GetData(string url)
     {
-        var parts = url.Split("::", StringSplitOptions.RemoveEmptyEntries);
-        var baseUrl = parts[0];
-        var mode = parts.Length > 1 ? parts[1].ToLower() : "default";
+        XtraReport report = url.ToLower() switch
+        {
+            "testreport" => new TestReport(),
+            _ => throw new Exception("Unknown report")
+        };
 
-        using var conn = new SqlConnection(connectionString);
-        conn.Open();
-
-        string query = mode == "latest"
-            ? "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 0 ORDER BY UpdatedAt DESC"
-            : "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 1 ORDER BY UpdatedAt DESC";
-
-        using var cmd = new SqlCommand(query, conn);
-        cmd.Parameters.AddWithValue("@Url", baseUrl);
-
-        var result = cmd.ExecuteScalar();
-
-        return result is byte[] layoutBytes
-            ? layoutBytes
-            : throw new FaultException($"Report '{baseUrl}' not found with mode '{mode}'.");
+        using var ms = new MemoryStream();
+        report.SaveLayoutToXml(ms);
+        return ms.ToArray();
     }
+
+
 
 
 
@@ -87,20 +81,31 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
         if (string.IsNullOrWhiteSpace(defaultUrl) || defaultUrl.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             throw new ArgumentException("Invalid report name");
 
-        using var ms = new MemoryStream();
-        report.SaveLayoutToXml(ms);
-        var layoutData = ms.ToArray();
+        // Define the path to save the .repx file
+        var reportsDirectory = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports");
+        Directory.CreateDirectory(reportsDirectory); // Ensure the folder exists
 
+        var repxFilePath = Path.Combine(reportsDirectory, $"{defaultUrl}.repx");
+
+        // Save report layout as .repx file
+        using var ms = new MemoryStream();
+        report.SaveLayoutToXml(repxFilePath);
+        var layoutBytes = ms.ToArray();
+
+        //save to db
         using var conn = new SqlConnection(connectionString);
         conn.Open();
 
-        using var cmd = new SqlCommand("INSERT INTO ReportStorage (Url, ReportLayout, IsDefault, UpdatedAt, CreatedAt)" +
-                                       " VALUES (@Url, @Layout, 0, GETDATE(), GETDATE())", conn);
-        cmd.Parameters.AddWithValue("@Url", defaultUrl);
-        cmd.Parameters.AddWithValue("@Layout", layoutData);
-        cmd.ExecuteNonQuery();
+        var cmd = new SqlCommand(@"
+      
+            INSERT INTO ReportStorage (Url, ReportLayout, CreatedAt, UpdatedAt, IsDefault) 
+            VALUES (@Url, @Layout, GETDATE(), GETDATE(),1)", conn);
 
+        cmd.Parameters.AddWithValue("@Url", defaultUrl);
+        cmd.Parameters.AddWithValue("@Layout", layoutBytes);
+        cmd.ExecuteNonQuery();
         return defaultUrl;
     }
+
 
 }
