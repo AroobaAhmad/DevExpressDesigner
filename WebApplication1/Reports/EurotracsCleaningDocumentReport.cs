@@ -16,7 +16,14 @@ namespace WebApplication1.Reports
         {
             InitializeComponent();
             SaveLayoutToXml(RepxPath);
+           // InjectEvents();
         }
+
+        private void InjectEvents()
+        {
+            SubReportCompartments.BeforePrint += SubReportCompartments_BeforePrint;
+        }
+
 
         public void SetCompanyInfo(ReportCompanyDTO companyinfo)
         {
@@ -27,18 +34,17 @@ namespace WebApplication1.Reports
             CompanyTelLabel.Text = companyinfo.CompanyTelephone;
         }
 
-        /*protected override void OnBeforePrint(PrintEventArgs e)
-        {
-            base.OnBeforePrint(e);
-            try
-            {
-                lblAllertec.Text = GetCurrentRowValue<bool?>("IsAllertec") ?? false ? "Positive" : "Negative";
-            }
-            catch(Exception ex)
-            {
+        /*protected void OnBeforePrint(object sender, CancelEventArgs e)
+         {
+             try
+             {
+                 lblAllertec.Text = GetCurrentRowValue()<bool?>("IsAllertec") ?? false ? "Positive" : "Negative";
+             }
+             catch(Exception ex)
+             {
 
-            }
-        }*/
+             }
+         }*/
 
         private void SubReportCompartments_BeforePrint(object sender,CancelEventArgs e)
         {
@@ -49,11 +55,11 @@ namespace WebApplication1.Reports
             ((XRSubreport)sender).ReportSource.Parameters["CleaningOrderID"].Value = Convert.ToInt32(GetCurrentColumnValue("CleaningOrderID"));
         }
 
-        //private T GetCurrentRowValue<T>(string columnName)
-        //{
-        //    return EurotracsCleaningDocumentDataSet.spEurotracsCleaningDocumentCompartmentSelect.Rows.Count > 0
-        //        ? EurotracsCleaningDocumentDataSet.spEurotracsCleaningDocumentCompartmentSelect.Rows[0].Field<T>(columnName)
-        //        : default(T); // Will return null of T is a reference type
-        //}
+        /*private T GetCurrentRowValue<T>(string columnName)
+        {
+            return EurotracsCleaningDocumentDataSet.spEurotracsCleaningDocumentCompartmentSelect.Rows.Count > 0
+                ? EurotracsCleaningDocumentDataSet.spEurotracsCleaningDocumentCompartmentSelect.Rows[0].Field<T>(columnName)
+                : default(T); // Will return null of T is a reference type
+        }*/
     }
 }

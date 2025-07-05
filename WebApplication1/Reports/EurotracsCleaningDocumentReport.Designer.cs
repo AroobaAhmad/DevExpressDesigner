@@ -32,13 +32,8 @@
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery2 = new DevExpress.DataAccess.Sql.StoredProcQuery();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter3 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter4 = new DevExpress.DataAccess.Sql.QueryParameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EurotracsCleaningDocumentReport));
-            DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery3 = new DevExpress.DataAccess.Sql.StoredProcQuery();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter5 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter6 = new DevExpress.DataAccess.Sql.QueryParameter();
+            this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.SubReportCompartments = new DevExpress.XtraReports.UI.XRSubreport();
             this.CompanyPanel = new DevExpress.XtraReports.UI.XRPanel();
@@ -87,16 +82,20 @@
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.CleaningStationPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel78 = new DevExpress.XtraReports.UI.XRLabel();
-            this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
-            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.sqlDataSource2 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            // 
+            // TopMargin
+            // 
+            this.TopMargin.HeightF = 32.00001F;
+            this.TopMargin.Name = "TopMargin";
+            this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // Detail
             // 
@@ -127,7 +126,6 @@
             // 
             this.SubReportCompartments.LocationFloat = new DevExpress.Utils.PointFloat(76.54171F, 447.7941F);
             this.SubReportCompartments.Name = "SubReportCompartments";
-            this.SubReportCompartments.ReportSource = new WebApplication1.Reports.EurotracsCleaningDocumentSubReport();
             this.SubReportCompartments.SizeF = new System.Drawing.SizeF(340F, 250F);
             // 
             // CompanyPanel
@@ -553,6 +551,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[IsAtp]")});
             this.xrCheckBox2.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
             this.xrCheckBox2.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far;
+            this.xrCheckBox2.GlyphOptions.Size = new System.Drawing.SizeF(13F, 13F);
             this.xrCheckBox2.LocationFloat = new DevExpress.Utils.PointFloat(510.9985F, 23.00012F);
             this.xrCheckBox2.Name = "xrCheckBox2";
             this.xrCheckBox2.SizeF = new System.Drawing.SizeF(83.25427F, 22.99988F);
@@ -565,6 +564,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[IsMilliport]")});
             this.xrCheckBox1.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
             this.xrCheckBox1.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far;
+            this.xrCheckBox1.GlyphOptions.Size = new System.Drawing.SizeF(13F, 13F);
             this.xrCheckBox1.LocationFloat = new DevExpress.Utils.PointFloat(510.9985F, 0F);
             this.xrCheckBox1.Name = "xrCheckBox1";
             this.xrCheckBox1.SizeF = new System.Drawing.SizeF(83.25427F, 23.00012F);
@@ -678,26 +678,17 @@
             this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.Text = "xrLabel15";
             // 
-            // xrLabel78
+            // CleaningOrderID
             // 
-            this.xrLabel78.BorderWidth = 0F;
-            this.xrLabel78.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
-            this.xrLabel78.LocationFloat = new DevExpress.Utils.PointFloat(254.5144F, 1.000015F);
-            this.xrLabel78.Name = "xrLabel78";
-            this.xrLabel78.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel78.SizeF = new System.Drawing.SizeF(122.4854F, 20F);
-            this.xrLabel78.StylePriority.UseBorderWidth = false;
-            this.xrLabel78.StylePriority.UseFont = false;
-            this.xrLabel78.StylePriority.UseTextAlignment = false;
-            this.xrLabel78.Text = "Customer reference : ";
-            this.xrLabel78.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.CleaningOrderID.Name = "CleaningOrderID";
+            this.CleaningOrderID.Type = typeof(int);
+            this.CleaningOrderID.ValueInfo = "27";
             // 
-            // TopMargin
+            // CompanyID
             // 
-            this.TopMargin.HeightF = 32.00001F;
-            this.TopMargin.Name = "TopMargin";
-            this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.CompanyID.Name = "CompanyID";
+            this.CompanyID.Type = typeof(short);
+            this.CompanyID.ValueInfo = "90";
             // 
             // BottomMargin
             // 
@@ -738,73 +729,31 @@
             this.sqlDataSource1.Name = "sqlDataSource1";
             storedProcQuery1.Name = "report_spEurotracsCleaningDocumentSelect";
             queryParameter1.Name = "@CleaningOrderID";
-            queryParameter1.Type = typeof(int);
-            queryParameter1.ValueInfo = "0";
+            queryParameter1.Type = typeof(global::DevExpress.DataAccess.Expression);
+            queryParameter1.Value = new DevExpress.DataAccess.Expression("?CleaningOrderID", typeof(int));
             queryParameter2.Name = "@CompanyID";
-            queryParameter2.Type = typeof(short);
-            queryParameter2.ValueInfo = "0";
+            queryParameter2.Type = typeof(global::DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("?CompanyID", typeof(short));
             storedProcQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
             queryParameter1,
             queryParameter2});
             storedProcQuery1.StoredProcName = "report.spEurotracsCleaningDocumentSelect";
-            storedProcQuery2.Name = "report_spEurotracsCleaningDocumentCompartmentSelect";
-            queryParameter3.Name = "@CleaningOrderID";
-            queryParameter3.Type = typeof(int);
-            queryParameter3.ValueInfo = "0";
-            queryParameter4.Name = "@CompanyID";
-            queryParameter4.Type = typeof(short);
-            queryParameter4.ValueInfo = "0";
-            storedProcQuery2.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
-            queryParameter3,
-            queryParameter4});
-            storedProcQuery2.StoredProcName = "report.spEurotracsCleaningDocumentCompartmentSelect";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1,
-            storedProcQuery2});
+            storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
-            // 
-            // CompanyID
-            // 
-            this.CompanyID.Name = "CompanyID";
-            this.CompanyID.Type = typeof(short);
-            this.CompanyID.ValueInfo = "90";
-            // 
-            // CleaningOrderID
-            // 
-            this.CleaningOrderID.Name = "CleaningOrderID";
-            this.CleaningOrderID.Type = typeof(int);
-            this.CleaningOrderID.ValueInfo = "4";
-            // 
-            // sqlDataSource2
-            // 
-            this.sqlDataSource2.ConnectionName = "DefaultConnection";
-            this.sqlDataSource2.Name = "sqlDataSource2";
-            storedProcQuery3.Name = "report_spEurotracsCleaningDocumentSelect";
-            queryParameter5.Name = "@CleaningOrderID";
-            queryParameter5.Type = typeof(global::DevExpress.DataAccess.Expression);
-            queryParameter5.Value = new DevExpress.DataAccess.Expression("?CleaningOrderID", typeof(int));
-            queryParameter6.Name = "@CompanyID";
-            queryParameter6.Type = typeof(global::DevExpress.DataAccess.Expression);
-            queryParameter6.Value = new DevExpress.DataAccess.Expression("?CompanyID", typeof(short));
-            storedProcQuery3.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
-            queryParameter5,
-            queryParameter6});
-            storedProcQuery3.StoredProcName = "report.spEurotracsCleaningDocumentSelect";
-            this.sqlDataSource2.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery3});
-            this.sqlDataSource2.ResultSchemaSerializable = resources.GetString("sqlDataSource2.ResultSchemaSerializable");
             // 
             // EurotracsCleaningDocumentReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
-            this.Detail,
             this.TopMargin,
+            this.Detail,
             this.BottomMargin});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.sqlDataSource1,
-            this.sqlDataSource2});
+            this.sqlDataSource1});
             this.DataMember = "report_spEurotracsCleaningDocumentSelect";
-            this.DataSource = this.sqlDataSource2;
+            this.DataSource = this.sqlDataSource1;
+            this.DisplayName = "EurotracsCleaningDocumentReport";
+            this.Extensions.Add("DataSerializationExtension", "DevExpress.XtraReports.Web.ReportDesigner.DefaultDataSerializer");
             this.Margins = new DevExpress.Drawing.DXMargins(28F, 28F, 32.00001F, 31.95837F);
             this.PageHeight = 1169;
             this.PageWidth = 827;
@@ -822,62 +771,60 @@
 
         #endregion
 
-        private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
-        private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel21;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel78;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel16;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel15;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel14;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel13;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel12;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel8;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel7;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.XRPanel CompanyPanel;
-        private DevExpress.XtraReports.UI.XRPanel xrPanel1;
-        private DevExpress.XtraReports.UI.XRPanel CustomerReferencePanel;
-        private DevExpress.XtraReports.UI.XRPanel IdentificationPanel;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel17;
-        private DevExpress.XtraReports.UI.XRPanel CustomerPanel;
-        private DevExpress.XtraReports.UI.XRPanel NextLoadPanel;
-        private DevExpress.XtraReports.UI.XRPanel NatureOfProductPanel;
-        private DevExpress.XtraReports.UI.XRPanel CleaningProceduresPanel;
-        private DevExpress.XtraReports.UI.XRPanel PreviousLoadPanel;
-        private DevExpress.XtraReports.UI.XRPanel AdditionalServicesPanel;
-        private DevExpress.XtraReports.UI.XRPanel RemarksPanel;
-        private DevExpress.XtraReports.UI.XRPanel DatePanel;
-        private DevExpress.XtraReports.UI.XRPanel CleanerPanel;
-        private DevExpress.XtraReports.UI.XRPanel DriverPanel;
-        private DevExpress.XtraReports.UI.XRPanel CleaningStationPanel;
+        private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.XRSubreport SubReportCompartments;
-        private DevExpress.XtraReports.UI.XRPictureBox Logo;
+        private DevExpress.XtraReports.Parameters.Parameter CleaningOrderID;
+        private DevExpress.XtraReports.Parameters.Parameter CompanyID;
+        private DevExpress.XtraReports.UI.XRPanel CompanyPanel;
         private DevExpress.XtraReports.UI.XRLabel CompanyTelLabel;
         private DevExpress.XtraReports.UI.XRLabel CompanyCityLabel;
         private DevExpress.XtraReports.UI.XRLabel CompanyStreetLabel;
         private DevExpress.XtraReports.UI.XRLabel CompanyNameLabel;
+        private DevExpress.XtraReports.UI.XRPictureBox Logo;
+        private DevExpress.XtraReports.UI.XRPanel xrPanel1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+        private DevExpress.XtraReports.UI.XRPanel CustomerReferencePanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        private DevExpress.XtraReports.UI.XRPanel IdentificationPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel17;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
+        private DevExpress.XtraReports.UI.XRPanel CustomerPanel;
         private DevExpress.XtraReports.UI.XRLabel xrLabel19;
         private DevExpress.XtraReports.UI.XRLabel xrLabel18;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.UI.XRPanel NextLoadPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
+        private DevExpress.XtraReports.UI.XRPanel NatureOfProductPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
+        private DevExpress.XtraReports.UI.XRPanel CleaningProceduresPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel22;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel7;
+        private DevExpress.XtraReports.UI.XRPanel PreviousLoadPanel;
+        private DevExpress.XtraReports.UI.XRPanel AdditionalServicesPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel8;
+        private DevExpress.XtraReports.UI.XRPanel RemarksPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel20;
+        private DevExpress.XtraReports.UI.XRLabel lblAllertec;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel11;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel10;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel9;
+        private DevExpress.XtraReports.UI.XRLabel SealingLabel;
         private DevExpress.XtraReports.UI.XRLabel CO2Label;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox2;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox1;
-        private DevExpress.XtraReports.UI.XRLabel SealingLabel;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel9;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel10;
-        private DevExpress.XtraReports.UI.XRLabel lblAllertec;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel11;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel20;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel22;
+        private DevExpress.XtraReports.UI.XRPanel DatePanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel13;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel14;
+        private DevExpress.XtraReports.UI.XRPanel CleanerPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel12;
+        private DevExpress.XtraReports.UI.XRPanel DriverPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel16;
+        private DevExpress.XtraReports.UI.XRPanel CleaningStationPanel;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel15;
+        private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel21;
+        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
-        private DevExpress.XtraReports.Parameters.Parameter CompanyID;
-        private DevExpress.XtraReports.Parameters.Parameter CleaningOrderID;
-        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource2;
     }
 }

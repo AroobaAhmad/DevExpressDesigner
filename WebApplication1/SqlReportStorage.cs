@@ -23,7 +23,8 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
         
         XtraReport report = url.ToLower() switch
         {
-            "testreport" => generator.GenerateReport(),
+            "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
+            "eurotracscleaningdocumentsubreport" => new EurotracsCleaningDocumentSubReport(),
             _ => throw new Exception("Unknown report")
         };
 
