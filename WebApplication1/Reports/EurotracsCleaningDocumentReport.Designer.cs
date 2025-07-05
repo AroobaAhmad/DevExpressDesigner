@@ -36,6 +36,8 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.SubReportCompartments = new DevExpress.XtraReports.UI.XRSubreport();
+            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
             this.CompanyPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.CompanyTelLabel = new DevExpress.XtraReports.UI.XRLabel();
             this.CompanyCityLabel = new DevExpress.XtraReports.UI.XRLabel();
@@ -82,8 +84,6 @@
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.CleaningStationPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
-            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
@@ -126,7 +126,22 @@
             // 
             this.SubReportCompartments.LocationFloat = new DevExpress.Utils.PointFloat(76.54171F, 447.7941F);
             this.SubReportCompartments.Name = "SubReportCompartments";
+            this.SubReportCompartments.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("CompID", this.CompanyID));
+            this.SubReportCompartments.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("CleanID", this.CleaningOrderID));
+            this.SubReportCompartments.ReportSource = new WebApplication1.Reports.EurotracsCleaningDocumentSubReport();
             this.SubReportCompartments.SizeF = new System.Drawing.SizeF(340F, 250F);
+            // 
+            // CompanyID
+            // 
+            this.CompanyID.Name = "CompanyID";
+            this.CompanyID.Type = typeof(short);
+            this.CompanyID.ValueInfo = "90";
+            // 
+            // CleaningOrderID
+            // 
+            this.CleaningOrderID.Name = "CleaningOrderID";
+            this.CleaningOrderID.Type = typeof(int);
+            this.CleaningOrderID.ValueInfo = "27";
             // 
             // CompanyPanel
             // 
@@ -678,18 +693,6 @@
             this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.Text = "xrLabel15";
             // 
-            // CleaningOrderID
-            // 
-            this.CleaningOrderID.Name = "CleaningOrderID";
-            this.CleaningOrderID.Type = typeof(int);
-            this.CleaningOrderID.ValueInfo = "27";
-            // 
-            // CompanyID
-            // 
-            this.CompanyID.Name = "CompanyID";
-            this.CompanyID.Type = typeof(short);
-            this.CompanyID.ValueInfo = "90";
-            // 
             // BottomMargin
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -773,9 +776,6 @@
 
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.DetailBand Detail;
-        private DevExpress.XtraReports.UI.XRSubreport SubReportCompartments;
-        private DevExpress.XtraReports.Parameters.Parameter CleaningOrderID;
-        private DevExpress.XtraReports.Parameters.Parameter CompanyID;
         private DevExpress.XtraReports.UI.XRPanel CompanyPanel;
         private DevExpress.XtraReports.UI.XRLabel CompanyTelLabel;
         private DevExpress.XtraReports.UI.XRLabel CompanyCityLabel;
@@ -826,5 +826,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
+        private DevExpress.XtraReports.Parameters.Parameter CompanyID;
+        private DevExpress.XtraReports.Parameters.Parameter CleaningOrderID;
+        public DevExpress.XtraReports.UI.XRSubreport SubReportCompartments;
     }
 }
