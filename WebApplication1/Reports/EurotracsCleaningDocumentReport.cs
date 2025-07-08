@@ -16,7 +16,7 @@ namespace WebApplication1.Reports
         {
             InitializeComponent();
             SaveLayoutToXml(RepxPath);
-           // InjectEvents();
+            InjectEvents();
         }
 
         private void InjectEvents()
@@ -34,25 +34,19 @@ namespace WebApplication1.Reports
             CompanyTelLabel.Text = companyinfo.CompanyTelephone;
         }
 
-        /*protected void OnBeforePrint(object sender, CancelEventArgs e)
-         {
-             try
-             {
-                 lblAllertec.Text = GetCurrentRowValue()<bool?>("IsAllertec") ?? false ? "Positive" : "Negative";
-             }
-             catch(Exception ex)
-             {
-
-             }
-         }*/
-
         private void SubReportCompartments_BeforePrint(object sender,CancelEventArgs e)
         {
-            SubReportCompartments.WidthF = (float)250;
-            SubReportCompartments.HeightF = (float)340;
+            var subreportControl = (XRSubreport)sender;
 
-            ((XRSubreport)sender).ReportSource.Parameters["CompanyID"].Value = Convert.ToInt32(GetCurrentColumnValue("CompanyID"));
-            ((XRSubreport)sender).ReportSource.Parameters["CleaningOrderID"].Value = Convert.ToInt32(GetCurrentColumnValue("CleaningOrderID"));
+            // This is the report automatically loaded from ReportSourceUrl
+            if (subreportControl.ReportSource != null)
+            {
+                var subReport = subreportControl.ReportSource;
+
+                subReport.Parameters["CompID"].Value = Convert.ToInt32(GetCurrentColumnValue("CompanyID"));
+                subReport.Parameters["CleanID"].Value = Convert.ToInt32(GetCurrentColumnValue("CleaningOrderID"));
+                subReport.RequestParameters = false;
+            }
         }
 
         /*private T GetCurrentRowValue<T>(string columnName)

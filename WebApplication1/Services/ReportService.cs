@@ -34,6 +34,10 @@ namespace WebApplication1.Services
                 .OrderByDescending(r => r.UpdatedAt)
                 .FirstOrDefault();
         }
+        public ReportStorage GetReport()
+        {
+            return db.ReportStorage.First(r => r.Url == "SSI");
+        }
 
         // for export to PDF
         public byte[] GeneratePdf(byte[] layout)

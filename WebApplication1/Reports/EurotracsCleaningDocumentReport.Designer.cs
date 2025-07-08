@@ -36,8 +36,6 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.SubReportCompartments = new DevExpress.XtraReports.UI.XRSubreport();
-            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
             this.CompanyPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.CompanyTelLabel = new DevExpress.XtraReports.UI.XRLabel();
             this.CompanyCityLabel = new DevExpress.XtraReports.UI.XRLabel();
@@ -88,6 +86,8 @@
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
+            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -126,22 +126,8 @@
             // 
             this.SubReportCompartments.LocationFloat = new DevExpress.Utils.PointFloat(76.54171F, 447.7941F);
             this.SubReportCompartments.Name = "SubReportCompartments";
-            this.SubReportCompartments.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("CompID", this.CompanyID));
-            this.SubReportCompartments.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("CleanID", this.CleaningOrderID));
             this.SubReportCompartments.ReportSource = new WebApplication1.Reports.EurotracsCleaningDocumentSubReport();
             this.SubReportCompartments.SizeF = new System.Drawing.SizeF(340F, 250F);
-            // 
-            // CompanyID
-            // 
-            this.CompanyID.Name = "CompanyID";
-            this.CompanyID.Type = typeof(short);
-            this.CompanyID.ValueInfo = "90";
-            // 
-            // CleaningOrderID
-            // 
-            this.CleaningOrderID.Name = "CleaningOrderID";
-            this.CleaningOrderID.Type = typeof(int);
-            this.CleaningOrderID.ValueInfo = "27";
             // 
             // CompanyPanel
             // 
@@ -745,6 +731,18 @@
             storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
+            // CompanyID
+            // 
+            this.CompanyID.Name = "CompanyID";
+            this.CompanyID.Type = typeof(short);
+            this.CompanyID.ValueInfo = "90";
+            // 
+            // CleaningOrderID
+            // 
+            this.CleaningOrderID.Name = "CleaningOrderID";
+            this.CleaningOrderID.Type = typeof(int);
+            this.CleaningOrderID.ValueInfo = "27";
+            // 
             // EurotracsCleaningDocumentReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -776,6 +774,7 @@
 
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.DetailBand Detail;
+        private DevExpress.XtraReports.UI.XRSubreport SubReportCompartments;
         private DevExpress.XtraReports.UI.XRPanel CompanyPanel;
         private DevExpress.XtraReports.UI.XRLabel CompanyTelLabel;
         private DevExpress.XtraReports.UI.XRLabel CompanyCityLabel;
@@ -828,6 +827,5 @@
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.Parameters.Parameter CompanyID;
         private DevExpress.XtraReports.Parameters.Parameter CleaningOrderID;
-        public DevExpress.XtraReports.UI.XRSubreport SubReportCompartments;
     }
 }

@@ -3,6 +3,7 @@ using DevExpress.XtraReports.Web.ClientControls;
 using DevExpress.XtraReports.Web.Extensions;
 using System;
 using System.Data.SqlClient;
+using DevExpress.XtraReports.Services;
 using WebApplication1.Data;
 using WebApplication1.Reports;
 
@@ -19,12 +20,15 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
     }
     public override byte[] GetData(string url)
     {
-        ReportGenerator generator = new ReportGenerator(); 
-        
+        //var path = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports", url + ".repx");
+
+        //if (!File.Exists(path))
+        //    throw new FileNotFoundException($"Report file not found: {path}");
+
+        //return File.ReadAllBytes(path);
         XtraReport report = url.ToLower() switch
         {
             "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
-            "eurotracscleaningdocumentsubreport" => new EurotracsCleaningDocumentSubReport(),
             _ => throw new Exception("Unknown report")
         };
 
@@ -34,27 +38,43 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
     }
 
 
-
-
-
     public override Dictionary<string, string> GetUrls()
     {
         var dict = new Dictionary<string, string>();
 
-        using var conn = new SqlConnection(connectionString);
-        conn.Open();
+        string reportsDirectory = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports");
 
-        var cmd = new SqlCommand("SELECT Url FROM ReportStorage", conn);
-        using var reader = cmd.ExecuteReader();
+        if (!Directory.Exists(reportsDirectory))
+            return dict;
 
-        while (reader.Read())
+        foreach (var file in Directory.GetFiles(reportsDirectory, "*.repx"))
         {
-            string name = reader.GetString(0);
-            dict[name] = name;
+            string fileName = Path.GetFileNameWithoutExtension(file);
+            dict[fileName] = fileName; // key and value both are names used by the designer
         }
 
         return dict;
     }
+
+
+    //public override Dictionary<string, string> GetUrls()
+    //{
+    //    var dict = new Dictionary<string, string>();
+
+    //    using var conn = new SqlConnection(connectionString);
+    //    conn.Open();
+
+    //    var cmd = new SqlCommand("SELECT Url FROM ReportStorage", conn);
+    //    using var reader = cmd.ExecuteReader();
+
+    //    while (reader.Read())
+    //    {
+    //        string name = reader.GetString(0);
+    //        dict[name] = name;
+    //    }
+
+    //    return dict;
+    //}
 
 
     public override void SetData(XtraReport report, string url)
@@ -85,31 +105,53 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
         if (string.IsNullOrWhiteSpace(defaultUrl) || defaultUrl.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             throw new ArgumentException("Invalid report name");
 
-        // Define the path to save the .repx file
         var reportsDirectory = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports");
-        Directory.CreateDirectory(reportsDirectory); // Ensure the folder exists
+        Directory.CreateDirectory(reportsDirectory);
 
         var repxFilePath = Path.Combine(reportsDirectory, $"{defaultUrl}.repx");
 
-        // Save report layout as .repx file
-        using var ms = new MemoryStream();
-        report.SaveLayoutToXml(repxFilePath);
-        var layoutBytes = ms.ToArray();
+        byte[] layoutBytes;
 
-        //save to db
+        using (var ms = new MemoryStream())
+        {
+            report.SaveLayoutToXml(ms);         // Save into memory stream
+            layoutBytes = ms.ToArray();
+
+            File.WriteAllBytes(repxFilePath, layoutBytes); // Save the same bytes to disk
+        }
+
+        // Save to DB
         using var conn = new SqlConnection(connectionString);
         conn.Open();
 
         var cmd = new SqlCommand(@"
-      
-            INSERT INTO ReportStorage (Url, ReportLayout, CreatedAt, UpdatedAt, IsDefault) 
-            VALUES (@Url, @Layout, GETDATE(), GETDATE(),1)", conn);
+        INSERT INTO ReportStorage (Url, ReportLayout, CreatedAt, UpdatedAt, IsDefault) 
+        VALUES (@Url, @Layout, GETDATE(), GETDATE(), 1)", conn);
 
         cmd.Parameters.AddWithValue("@Url", defaultUrl);
         cmd.Parameters.AddWithValue("@Layout", layoutBytes);
         cmd.ExecuteNonQuery();
+
         return defaultUrl;
     }
 
+   
 
 }
+//public class CustomReportProvider : IReportProvider
+//{
+//    public XtraReport GetReport(string url)
+//    {
+//        return url switch
+//        {
+//            "EurotracsCleaningDocumentSubReport" => new EurotracsCleaningDocumentSubReport(), // Or load from DB/Path
+//            _ => throw new Exception($"Unknown report: {url}")
+//        };
+//    }
+
+//    public XtraReport GetReport(string id, ReportProviderContext context)
+//    {
+//        throw new NotImplementedException();
+//    }
+//}
+
