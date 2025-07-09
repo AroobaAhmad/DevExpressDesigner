@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Drawing.Printing;
 using DevExpress.XtraReports.UI;
 using WebApplication1.Data;
 
@@ -15,7 +14,7 @@ namespace WebApplication1.Reports
         public EurotracsCleaningDocumentReport()
         {
             InitializeComponent();
-            SaveLayoutToXml(RepxPath);
+                // SaveLayoutToXml(RepxPath);
             InjectEvents();
         }
 

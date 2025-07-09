@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="13.1.8.0" Ref="2" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="EurotracsCleaningDocumentReport" DataAdapter="#Ref-1" DataSource="#Ref-0" DataMember="spEurotracsCleaningDocumentSelect" Version="13.1" PageWidth="827" PageHeight="1169" Margins="28, 28, 32, 32" PaperKind="A4">
+  <Bands>
+    <Item1 Ref="3" ControlType="DetailBand" Name="Detail" KeepTogether="true" TextAlignment="TopLeft" Padding="0,0,0,0,100" HeightF="1092.744">
+      <Controls>
+        <Item1 Ref="4" Name="SubReportCompartments" ControlType="XRSubreport" SizeF="340,250" LocationFloat="76.54171, 447.7941" Id="0">
+          <ReportSource Ref="7" ControlType="ETrans.Web.Reporting.Reports.Fixed.Eurotracs.EurotracsCleaningDocumentSubReport, ETrans.Web.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DataAdapter="#Ref-6" DataSource="#Ref-5" DataMember="spEurotracsCleaningDocumentCompartmentSelect" Version="13.1" PageWidth="722" PageHeight="2200" Margins="0, 7, 0, 0" PaperKind="Custom">
+            <Bands>
+              <Item1 Ref="8" ControlType="DetailBand" Name="Detail" KeepTogether="true" TextAlignment="TopLeft" Padding="0,0,0,0,100" HeightF="22">
+                <Controls>
+                  <Item1 Ref="9" Name="xrLabel1" ControlType="XRLabel" SizeF="20,20" LocationFloat="0, 0" Font="Arial, 7.5pt" Padding="2,2,0,0,100" BorderColor="Black" Borders="None" TextAlignment="MiddleCenter" Multiline="true" Text="xrLabel1">
+                    <DataBindings>
+                      <Item1 Ref="10" PropertyName="Text" DataMember="spEurotracsCleaningDocumentCompartmentSelect.CompartmentNumber" />
+                    </DataBindings>
+                    <StylePriority Ref="11" UseFont="false" UsePadding="false" UseBorderColor="false" UseBorders="false" UseTextAlignment="false" />
+                  </Item1>
+                  <Item2 Ref="12" Name="xrLabel2" ControlType="XRLabel" SizeF="40,20" LocationFloat="20.00001, 0" Font="Arial, 7.5pt" Padding="2,2,0,0,100" BorderColor="Black" Borders="None" TextAlignment="MiddleCenter" Multiline="true" Text="xrLabel2">
+                    <DataBindings>
+                      <Item1 Ref="13" PropertyName="Text" DataMember="spEurotracsCleaningDocumentCompartmentSelect.UnNumber" />
+                    </DataBindings>
+                    <StylePriority Ref="14" UseFont="false" UsePadding="false" UseBorderColor="false" UseBorders="false" UseTextAlignment="false" />
+                  </Item2>
+                  <Item3 Ref="15" Name="xrLabel3" ControlType="XRLabel" SizeF="100,20" LocationFloat="71.04162, 0" Font="Arial, 7.5pt" Padding="2,2,0,0,100" BorderColor="Black" Borders="None" TextAlignment="MiddleCenter" Multiline="true" Text="xrLabel3">
+                    <DataBindings>
+                      <Item1 Ref="16" PropertyName="Text" DataMember="spEurotracsCleaningDocumentCompartmentSelect.ProductMin1Name" />
+                    </DataBindings>
+                    <StylePriority Ref="17" UseFont="false" UsePadding="false" UseBorderColor="false" UseBorders="false" UseTextAlignment="false" />
+                  </Item3>
+                  <Item4 Ref="18" Name="xrLabel4" ControlType="XRLabel" SizeF="100,20" LocationFloat="171.0416, 0" Font="Arial, 7.5pt" Padding="2,2,0,0,100" BorderColor="Black" Borders="None" TextAlignment="MiddleCenter" Multiline="true" Text="xrLabel4">
+                    <DataBindings>
+                      <Item1 Ref="19" PropertyName="Text" DataMember="spEurotracsCleaningDocumentCompartmentSelect.ProductMin2Name" />
+                    </DataBindings>
+                    <StylePriority Ref="20" UseFont="false" UsePadding="false" UseBorderColor="false" UseBorders="false" UseTextAlignment="false" />
+                  </Item4>
+                  <Item5 Ref="21" Name="xrLabel5" ControlType="XRLabel" SizeF="100,20" LocationFloat="271.0416, 0" Font="Arial, 7.5pt" Padding="2,2,0,0,100" BorderColor="Black" Borders="None" TextAlignment="MiddleCenter" Multiline="true" Text="xrLabel5">
+                    <DataBindings>
+                      <Item1 Ref="22" PropertyName="Text" DataMember="spEurotracsCleaningDocumentCompartmentSelect.ProductMin3Name" />
+                    </DataBindings>
+                    <StylePriority Ref="23" UseFont="false" UsePadding="false" UseBorderColor="false" UseBorders="false" UseTextAlignment="false" />
+                  </Item5>
+                </Controls>
+              </Item1>
+              <Item2 Ref="24" Name="TopMargin" ControlType="TopMarginBand" TextAlignment="TopLeft" Padding="0,0,0,0,100" HeightF="0" />
+              <Item3 Ref="25" Name="BottomMargin" ControlType="BottomMarginBand" TextAlignment="TopLeft" Padding="0,0,0,0,100" HeightF="0" />
+              <Item4 Ref="26" ControlType="PageHeaderBand" Name="PageHeader" HeightF="0" />
+            </Bands>
+            <FormattingRuleSheet>
+              <Item1 Ref="27" Name="formattingRule1">
+                <Formatting Ref="28" StringFormat="Near;Near;0;None;Character;Default" BorderStyle="Inset" />
+              </Item1>
+            </FormattingRuleSheet>
+            <Parameters>
+              <Item1 Ref="31" Visible="false" Description="CleaningOrderID" Name="CleaningOrderID" Type="#Ref-29" Value="#Ref-30" />
+              <Item2 Ref="32" Name="CompanyID" Type="#Ref-29" Value="#Ref-30" />
+            </Parameters>
+          </ReportSource>
+        </Item1>
+        <Item2 Ref="33" Name="CompanyPanel" ControlType="XRPanel" SizeF="770.9986,216.103" Borders="None" LocationFloat="0, 0">
+          <StylePriority Ref="34" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="35" Name="CompanyTelLabel" ControlType="XRLabel" SizeF="295.4166,22.99997" LocationFloat="90.08337, 183.103" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="CompanyTelLabel">
+              <StylePriority Ref="36" UseFont="false" UseBorders="false" />
+            </Item1>
+            <Item2 Ref="37" Name="CompanyCityLabel" ControlType="XRLabel" SizeF="295.4167,23" LocationFloat="90.08337, 160.103" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="CompanyCityLabel">
+              <StylePriority Ref="38" UseFont="false" UseBorders="false" />
+            </Item2>
+            <Item3 Ref="39" Name="CompanyStreetLabel" ControlType="XRLabel" SizeF="295.4167,23" LocationFloat="90.08337, 137.103" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="CompanyStreetLabel">
+              <StylePriority Ref="40" UseFont="false" UseBorders="false" />
+            </Item3>
+            <Item4 Ref="41" Name="CompanyNameLabel" ControlType="XRLabel" SizeF="295.4165,43.83334" LocationFloat="90.08337, 93.26964" Font="Arial, 18pt, style=Bold" Padding="2,2,0,0,100" Borders="None" Text="CompanyNameLabel">
+              <StylePriority Ref="42" UseFont="false" UseBorders="false" />
+            </Item4>
+            <Item5 Ref="43" Name="Logo" ControlType="XRPictureBox" SizeF="365.4986,112" LocationFloat="395.4985, 94.10299" Borders="None" Sizing="Squeeze">
+              <StylePriority Ref="44" UseBorders="false" />
+            </Item5>
+          </Controls>
+        </Item2>
+        <Item3 Ref="45" Name="xrPanel1" ControlType="XRPanel" SizeF="385.4999,48.75005" Borders="None" LocationFloat="385.4999, 216.103">
+          <StylePriority Ref="46" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="47" Name="xrLabel1" ControlType="XRLabel" SizeF="325.6055,20" LocationFloat="49.88906, 28.75004" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Borders="None" AutoWidth="true" Text="xrLabelCleaningOrderReference">
+              <DataBindings>
+                <Item1 Ref="48" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningOrderReference" />
+              </DataBindings>
+              <StylePriority Ref="49" UseFont="false" UseBorders="false" />
+            </Item1>
+          </Controls>
+        </Item3>
+        <Item4 Ref="50" Name="CustomerReferencePanel" ControlType="XRPanel" SizeF="385.5,48.75005" Borders="None" LocationFloat="0, 216.103">
+          <StylePriority Ref="51" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="52" Name="xrLabel2" ControlType="XRLabel" SizeF="285.4141,20" LocationFloat="90.08337, 28.75004" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Text="xrLabel2">
+              <DataBindings>
+                <Item1 Ref="53" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.Reference" />
+              </DataBindings>
+              <StylePriority Ref="54" UseFont="false" />
+            </Item1>
+          </Controls>
+        </Item4>
+        <Item5 Ref="55" Name="IdentificationPanel" ControlType="XRPanel" SizeF="385.4986,107.9413" Borders="None" LocationFloat="385.4999, 264.853">
+          <StylePriority Ref="56" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="57" Name="xrLabel17" ControlType="XRLabel" SizeF="325.606,19.81372" LocationFloat="49.88906, 51.58574" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Borders="None" Text="xrLabel17">
+              <DataBindings>
+                <Item1 Ref="58" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningTruckInfo" />
+              </DataBindings>
+              <StylePriority Ref="59" UseFont="false" UseBorders="false" />
+            </Item1>
+            <Item2 Ref="60" Name="xrLabel4" ControlType="XRLabel" SizeF="325.6041,19.81375" LocationFloat="49.88906, 88.12758" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Borders="None" Text="xrLabel4">
+              <DataBindings>
+                <Item1 Ref="61" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningContainerTrailerInfo" />
+              </DataBindings>
+              <StylePriority Ref="62" UseFont="false" UseBorders="false" />
+            </Item2>
+          </Controls>
+        </Item5>
+        <Item6 Ref="63" Name="CustomerPanel" ControlType="XRPanel" SizeF="385.5,97.94128" Borders="None" LocationFloat="0, 264.853">
+          <StylePriority Ref="64" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="65" Name="xrLabel19" ControlType="XRLabel" SizeF="285.4141,19.99997" LocationFloat="90.08337, 51.58577" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="xrLabel19">
+              <DataBindings>
+                <Item1 Ref="66" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CustomerCity" />
+              </DataBindings>
+              <StylePriority Ref="67" UseFont="false" UseBorders="false" />
+            </Item1>
+            <Item2 Ref="68" Name="xrLabel18" ControlType="XRLabel" SizeF="285.4141,20" LocationFloat="90.08598, 30.00002" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="xrLabel18">
+              <DataBindings>
+                <Item1 Ref="69" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CustomerStreet" />
+              </DataBindings>
+              <StylePriority Ref="70" UseFont="false" UseBorders="false" />
+            </Item2>
+            <Item3 Ref="71" Name="xrLabel3" ControlType="XRLabel" SizeF="285.4141,20.00003" LocationFloat="90.08337, 9.999974" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="xrLabel3">
+              <DataBindings>
+                <Item1 Ref="72" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CustomerName" />
+              </DataBindings>
+              <StylePriority Ref="73" UseFont="false" UseBorders="false" />
+            </Item3>
+          </Controls>
+        </Item6>
+        <Item7 Ref="74" Name="NextLoadPanel" ControlType="XRPanel" SizeF="385.4987,74.99985" Borders="None" LocationFloat="385.4999, 372.7943">
+          <StylePriority Ref="75" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="76" Name="xrLabel6" ControlType="XRLabel" SizeF="325.6058,23.33337" LocationFloat="49.89808, 11.87503" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Text="xrLabel6">
+              <DataBindings>
+                <Item1 Ref="77" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.NewProductName" />
+              </DataBindings>
+              <StylePriority Ref="78" UseFont="false" />
+            </Item1>
+          </Controls>
+        </Item7>
+        <Item8 Ref="79" Name="NatureOfProductPanel" ControlType="XRPanel" SizeF="385.5,74.99982" Borders="None" LocationFloat="0, 372.7943">
+          <StylePriority Ref="80" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="81" Name="xrLabel5" ControlType="XRLabel" SizeF="285.4166,23.33334" LocationFloat="90.08598, 11.87503" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Text="xrLabel5">
+              <DataBindings>
+                <Item1 Ref="82" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.NatureOfProduct" />
+              </DataBindings>
+              <StylePriority Ref="83" UseFont="false" />
+            </Item1>
+          </Controls>
+        </Item8>
+        <Item9 Ref="84" Name="CleaningProceduresPanel" ControlType="XRPanel" SizeF="354.2499,246.7882" Borders="None" LocationFloat="416.75, 447.7941">
+          <StylePriority Ref="85" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="86" Name="xrLabel22" ControlType="XRLabel" SizeF="272.4804,89.16669" LocationFloat="46.76953, 157.6215" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Multiline="true" Text="[Remark]">
+              <StylePriority Ref="87" UseFont="false" />
+            </Item1>
+            <Item2 Ref="88" Name="xrLabel7" ControlType="XRLabel" SizeF="272.4804,147.6215" LocationFloat="46.76947, 10" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Text="xrLabel7">
+              <DataBindings>
+                <Item1 Ref="89" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.ProcedureEftcoItems" />
+              </DataBindings>
+              <StylePriority Ref="90" UseFont="false" />
+            </Item2>
+          </Controls>
+        </Item9>
+        <Item10 Ref="91" Name="PreviousLoadPanel" ControlType="XRPanel" SizeF="416.75,246.7882" Borders="None" LocationFloat="0, 447.7941" CanGrow="false">
+          <StylePriority Ref="92" UseBorders="false" />
+        </Item10>
+        <Item11 Ref="93" Name="AdditionalServicesPanel" ControlType="XRPanel" SizeF="771,147.1201" Borders="None" LocationFloat="0, 694.5824">
+          <StylePriority Ref="94" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="95" Name="xrLabel8" ControlType="XRLabel" SizeF="625.0836,104.8286" LocationFloat="135.9167, 32.29163" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Text="xrLabel8">
+              <DataBindings>
+                <Item1 Ref="96" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.ExtraEftcoItems" />
+              </DataBindings>
+              <StylePriority Ref="97" UseFont="false" />
+            </Item1>
+          </Controls>
+        </Item11>
+        <Item12 Ref="98" Name="RemarksPanel" ControlType="XRPanel" SizeF="770.9989,75" Borders="None" LocationFloat="0, 841.7025">
+          <StylePriority Ref="99" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="100" Name="xrLabel20" ControlType="XRLabel" SizeF="166.7401,23" LocationFloat="594.2528, 23" Font="Arial, 9.75pt" Padding="2,2,0,0,100" TextAlignment="MiddleLeft" Text="[AtpLocationName] [AtpResult]">
+              <StylePriority Ref="101" UseFont="false" UseTextAlignment="false" />
+            </Item1>
+            <Item2 Ref="102" Name="lblAllertec" ControlType="XRLabel" SizeF="166.7402,23" LocationFloat="594.2528, 46" Font="Arial, 9.75pt" Padding="2,2,0,0,100" TextAlignment="MiddleRight">
+              <StylePriority Ref="103" UseFont="false" UseTextAlignment="false" />
+            </Item2>
+            <Item3 Ref="104" Name="xrLabel11" ControlType="XRLabel" SizeF="83.25427,23" LocationFloat="510.9985, 45.99997" Font="Arial, 9.75pt" Padding="2,2,0,0,100" TextAlignment="MiddleLeft" Text="Allergenen">
+              <StylePriority Ref="105" UseFont="false" UseTextAlignment="false" />
+            </Item3>
+            <Item4 Ref="106" Name="xrLabel10" ControlType="XRLabel" SizeF="219.8702,23" LocationFloat="155.6293, 42" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Text="xrLabel10">
+              <DataBindings>
+                <Item1 Ref="107" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CO2" />
+              </DataBindings>
+              <StylePriority Ref="108" UseFont="false" />
+            </Item4>
+            <Item5 Ref="109" Name="xrLabel9" ControlType="XRLabel" SizeF="219.8702,23" LocationFloat="155.6293, 10" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Text="xrLabel9">
+              <DataBindings>
+                <Item1 Ref="110" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.Seals" />
+              </DataBindings>
+              <StylePriority Ref="111" UseFont="false" />
+            </Item5>
+            <Item6 Ref="112" Name="SealingLabel" ControlType="XRLabel" SizeF="65.54594,23" LocationFloat="90.08337, 9.999974" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Text="Sealing :">
+              <StylePriority Ref="113" UseFont="false" />
+            </Item6>
+            <Item7 Ref="114" Name="CO2Label" ControlType="XRLabel" SizeF="65.54597,23" LocationFloat="90.08337, 41.99998" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Text="CO2 :">
+              <StylePriority Ref="115" UseFont="false" />
+            </Item7>
+            <Item8 Ref="116" ControlType="XRCheckBox" Name="xrCheckBox2" SizeF="83.25427,22.99988" LocationFloat="510.9985, 23.00012" Font="Arial, 9.75pt" GlyphAlignment="Far" Text="ATP">
+              <DataBindings>
+                <Item1 Ref="117" PropertyName="CheckState" DataMember="spEurotracsCleaningDocumentSelect.IsAtp" />
+              </DataBindings>
+              <StylePriority Ref="118" UseFont="false" />
+            </Item8>
+            <Item9 Ref="119" ControlType="XRCheckBox" Name="xrCheckBox1" SizeF="83.25427,23.00012" LocationFloat="510.9985, 0" Font="Arial, 9.75pt" GlyphAlignment="Far" Text="Millipore">
+              <DataBindings>
+                <Item1 Ref="120" PropertyName="CheckState" DataMember="spEurotracsCleaningDocumentSelect.IsMilliport" />
+              </DataBindings>
+              <StylePriority Ref="121" UseFont="false" />
+            </Item9>
+          </Controls>
+        </Item12>
+        <Item13 Ref="122" Name="DatePanel" ControlType="XRPanel" SizeF="385.5,60.83337" Borders="None" LocationFloat="385.5001, 916.7025">
+          <StylePriority Ref="123" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="124" Name="xrLabel13" ControlType="XRLabel" SizeF="187.48,15" LocationFloat="188.0236, 18.50012" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Text="xrLabel13">
+              <DataBindings>
+                <Item1 Ref="125" FormatString="{0:dd/MM/yyyy H:mm:ss}" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningStartDate" />
+              </DataBindings>
+              <StylePriority Ref="126" UseFont="false" />
+            </Item1>
+            <Item2 Ref="127" Name="xrLabel14" ControlType="XRLabel" SizeF="187.48,15" LocationFloat="188.0131, 45.8334" Font="Arial, 7.5pt" Padding="2,2,0,0,100" Text="xrLabel14">
+              <DataBindings>
+                <Item1 Ref="128" FormatString="{0:dd/MM/yyyy H:mm:ss}" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningStopDate" />
+              </DataBindings>
+              <StylePriority Ref="129" UseFont="false" />
+            </Item2>
+          </Controls>
+        </Item13>
+        <Item14 Ref="130" Name="CleanerPanel" ControlType="XRPanel" SizeF="385.5,60.83337" Borders="None" LocationFloat="6.357829E-05, 916.7025">
+          <StylePriority Ref="131" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="132" Name="xrLabel12" ControlType="XRLabel" SizeF="285.4167,27.49982" LocationFloat="90.08331, 33.33356" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Text="xrLabel12">
+              <DataBindings>
+                <Item1 Ref="133" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningUserFullName" />
+              </DataBindings>
+              <StylePriority Ref="134" UseFont="false" />
+            </Item1>
+          </Controls>
+        </Item14>
+        <Item15 Ref="135" Name="DriverPanel" ControlType="XRPanel" SizeF="385.5,75" Borders="None" LocationFloat="385.5, 1017.744">
+          <StylePriority Ref="136" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="137" Name="xrLabel16" ControlType="XRLabel" SizeF="187.4764,45" LocationFloat="188.0237, 20.00012" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="xrLabel16">
+              <DataBindings>
+                <Item1 Ref="138" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningDriverFullName" />
+              </DataBindings>
+              <StylePriority Ref="139" UseFont="false" UseBorders="false" />
+            </Item1>
+          </Controls>
+        </Item15>
+        <Item16 Ref="140" Name="CleaningStationPanel" ControlType="XRPanel" SizeF="385.5,75" Borders="None" LocationFloat="0, 1017.744">
+          <StylePriority Ref="141" UseBorders="false" />
+          <Controls>
+            <Item1 Ref="142" Name="xrLabel15" ControlType="XRLabel" SizeF="168.7499,45" LocationFloat="206.75, 20.00024" Font="Arial, 9.75pt" Padding="2,2,0,0,100" Borders="None" Text="xrLabel15">
+              <DataBindings>
+                <Item1 Ref="143" PropertyName="Text" DataMember="spEurotracsCleaningDocumentSelect.CleaningStationName" />
+              </DataBindings>
+              <StylePriority Ref="144" UseFont="false" UseBorders="false" />
+            </Item1>
+          </Controls>
+        </Item16>
+      </Controls>
+    </Item1>
+    <Item2 Ref="145" Name="TopMargin" ControlType="TopMarginBand" TextAlignment="TopLeft" Padding="0,0,0,0,100" HeightF="32.0000076" />
+    <Item3 Ref="146" Name="BottomMargin" ControlType="BottomMarginBand" TextAlignment="TopLeft" Padding="0,0,0,0,100" HeightF="31.95837">
+      <Controls>
+        <Item1 Ref="147" Name="xrLabel21" ControlType="XRLabel" SizeF="55.44543,21.95835" LocationFloat="998.6392, 10.00002" Font="Arial, 9.75pt" Padding="2,2,0,0,100" TextAlignment="TopRight" Text="Pagina">
+          <StylePriority Ref="148" UseFont="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="149" ControlType="XRPageInfo" Name="xrPageInfo1" SizeF="50.91541,21.95834" LocationFloat="1054.085, 10.00002" Font="Arial, 9.75pt" Padding="2,2,0,0,100" TextAlignment="TopCenter">
+          <StylePriority Ref="150" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+      </Controls>
+    </Item3>
+  </Bands>
+  <FormattingRuleSheet>
+    <Item1 Ref="151" Name="formattingRule1">
+      <Formatting Ref="152" StringFormat="Near;Near;0;None;Character;Default" BorderStyle="Inset" />
+    </Item1>
+  </FormattingRuleSheet>
+  <ObjectStorage>
+    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v13.1" Ref="29" Content="System.Int32" Type="System.Type" />
+    <Item2 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v13.1" Ref="30" Content="0" Type="System.Int32" />
+    <Item3 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v13.1" Ref="6" Content="~Xtra#NULL" Type="ETrans.Web.Reporting.Data.Fixed.Eurotracs.EurotracsCleaningDocumentDataSetTableAdapters.spEurotracsCleaningDocumentCompartmentSelectTableAdapter" />
+    <Item4 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v13.1" Ref="5" Content="~Xtra#NULL" Type="ETrans.Web.Reporting.Data.Fixed.Eurotracs.EurotracsCleaningDocumentDataSet" />
+    <Item5 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v13.1" Ref="1" Content="~Xtra#NULL" Type="ETrans.Web.Reporting.Data.Fixed.Eurotracs.EurotracsCleaningDocumentDataSetTableAdapters.spEurotracsCleaningDocumentSelectTableAdapter" />
+    <Item6 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v13.1" Ref="0" Content="~Xtra#NULL" Type="ETrans.Web.Reporting.Data.Fixed.Eurotracs.EurotracsCleaningDocumentDataSet" />
+  </ObjectStorage>
+</XtraReportsLayoutSerializer>

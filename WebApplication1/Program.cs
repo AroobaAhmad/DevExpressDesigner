@@ -15,9 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDevExpressControls();
 builder.Services.AddMvc();
 builder.Services.AddScoped<IReportService, ReportService>();
-//builder.Services.AddScoped<IReportProvider, CustomReportProvider>();
+builder.Services.AddScoped<IReportProvider, CustomReportProvider>();
 builder.Services.AddScoped<ReportStorageWebExtension>(provider =>
-    new SqlReportStorage(builder.Configuration.GetConnectionString("Default")));
+   new SqlReportStorage(builder.Configuration.GetConnectionString("Default")));
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 
