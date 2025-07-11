@@ -35,40 +35,37 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EurotracsCleaningDocumentReport));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.SubReportCompartments = new DevExpress.XtraReports.UI.XRSubreport();
+            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
             this.CompanyPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
-            this.CustomerReferencePanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.IdentificationPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.CustomerPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.NextLoadPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.NatureOfProductPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.CleaningProceduresPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.PreviousLoadPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.AdditionalServicesPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.RemarksPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.DatePanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.CleanerPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.DriverPanel = new DevExpress.XtraReports.UI.XRPanel();
-            this.CleaningStationPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.CompanyTelLabel = new DevExpress.XtraReports.UI.XRLabel();
             this.CompanyCityLabel = new DevExpress.XtraReports.UI.XRLabel();
             this.CompanyStreetLabel = new DevExpress.XtraReports.UI.XRLabel();
             this.CompanyNameLabel = new DevExpress.XtraReports.UI.XRLabel();
             this.Logo = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.CustomerReferencePanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.IdentificationPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.CustomerPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NextLoadPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NatureOfProductPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.CleaningProceduresPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.PreviousLoadPanel = new DevExpress.XtraReports.UI.XRPanel();
+            this.AdditionalServicesPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.RemarksPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblAllertec = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
@@ -78,16 +75,19 @@
             this.CO2Label = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox2 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox1 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.DatePanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
+            this.CleanerPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
+            this.DriverPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.CleaningStationPanel = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
+            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
-            this.CompanyID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.CleaningOrderID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -122,16 +122,6 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // BottomMargin
-            // 
-            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel21,
-            this.xrPageInfo1});
-            this.BottomMargin.HeightF = 31.95837F;
-            this.BottomMargin.Name = "BottomMargin";
-            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
             // SubReportCompartments
             // 
             this.SubReportCompartments.LocationFloat = new DevExpress.Utils.PointFloat(76.54171F, 447.7941F);
@@ -139,6 +129,18 @@
             this.SubReportCompartments.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("CompID", this.CompanyID));
             this.SubReportCompartments.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("CleanID", this.CleaningOrderID));
             this.SubReportCompartments.SizeF = new System.Drawing.SizeF(340F, 250F);
+            // 
+            // CompanyID
+            // 
+            this.CompanyID.Name = "CompanyID";
+            this.CompanyID.Type = typeof(short);
+            this.CompanyID.ValueInfo = "90";
+            // 
+            // CleaningOrderID
+            // 
+            this.CleaningOrderID.Name = "CleaningOrderID";
+            this.CleaningOrderID.Type = typeof(int);
+            this.CleaningOrderID.ValueInfo = "27";
             // 
             // CompanyPanel
             // 
@@ -153,158 +155,6 @@
             this.CompanyPanel.Name = "CompanyPanel";
             this.CompanyPanel.SizeF = new System.Drawing.SizeF(770.9986F, 216.103F);
             this.CompanyPanel.StylePriority.UseBorders = false;
-            // 
-            // xrPanel1
-            // 
-            this.xrPanel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel1});
-            this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(385.4999F, 216.103F);
-            this.xrPanel1.Name = "xrPanel1";
-            this.xrPanel1.SizeF = new System.Drawing.SizeF(385.4999F, 48.75005F);
-            this.xrPanel1.StylePriority.UseBorders = false;
-            // 
-            // CustomerReferencePanel
-            // 
-            this.CustomerReferencePanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.CustomerReferencePanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel2});
-            this.CustomerReferencePanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 216.103F);
-            this.CustomerReferencePanel.Name = "CustomerReferencePanel";
-            this.CustomerReferencePanel.SizeF = new System.Drawing.SizeF(385.5F, 48.75005F);
-            this.CustomerReferencePanel.StylePriority.UseBorders = false;
-            // 
-            // IdentificationPanel
-            // 
-            this.IdentificationPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.IdentificationPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel17,
-            this.xrLabel4});
-            this.IdentificationPanel.LocationFloat = new DevExpress.Utils.PointFloat(385.4999F, 264.853F);
-            this.IdentificationPanel.Name = "IdentificationPanel";
-            this.IdentificationPanel.SizeF = new System.Drawing.SizeF(385.4986F, 107.9413F);
-            this.IdentificationPanel.StylePriority.UseBorders = false;
-            // 
-            // CustomerPanel
-            // 
-            this.CustomerPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.CustomerPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel19,
-            this.xrLabel18,
-            this.xrLabel3});
-            this.CustomerPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 264.853F);
-            this.CustomerPanel.Name = "CustomerPanel";
-            this.CustomerPanel.SizeF = new System.Drawing.SizeF(385.5F, 97.94128F);
-            this.CustomerPanel.StylePriority.UseBorders = false;
-            // 
-            // NextLoadPanel
-            // 
-            this.NextLoadPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.NextLoadPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel6});
-            this.NextLoadPanel.LocationFloat = new DevExpress.Utils.PointFloat(385.4999F, 372.7943F);
-            this.NextLoadPanel.Name = "NextLoadPanel";
-            this.NextLoadPanel.SizeF = new System.Drawing.SizeF(385.4987F, 74.99985F);
-            this.NextLoadPanel.StylePriority.UseBorders = false;
-            // 
-            // NatureOfProductPanel
-            // 
-            this.NatureOfProductPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.NatureOfProductPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel5});
-            this.NatureOfProductPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 372.7943F);
-            this.NatureOfProductPanel.Name = "NatureOfProductPanel";
-            this.NatureOfProductPanel.SizeF = new System.Drawing.SizeF(385.5F, 74.99982F);
-            this.NatureOfProductPanel.StylePriority.UseBorders = false;
-            // 
-            // CleaningProceduresPanel
-            // 
-            this.CleaningProceduresPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.CleaningProceduresPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel22,
-            this.xrLabel7});
-            this.CleaningProceduresPanel.LocationFloat = new DevExpress.Utils.PointFloat(416.75F, 447.7941F);
-            this.CleaningProceduresPanel.Name = "CleaningProceduresPanel";
-            this.CleaningProceduresPanel.SizeF = new System.Drawing.SizeF(354.2499F, 246.7882F);
-            this.CleaningProceduresPanel.StylePriority.UseBorders = false;
-            // 
-            // PreviousLoadPanel
-            // 
-            this.PreviousLoadPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.PreviousLoadPanel.CanGrow = false;
-            this.PreviousLoadPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 447.7941F);
-            this.PreviousLoadPanel.Name = "PreviousLoadPanel";
-            this.PreviousLoadPanel.SizeF = new System.Drawing.SizeF(416.75F, 246.7882F);
-            this.PreviousLoadPanel.StylePriority.UseBorders = false;
-            // 
-            // AdditionalServicesPanel
-            // 
-            this.AdditionalServicesPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.AdditionalServicesPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel8});
-            this.AdditionalServicesPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 694.5824F);
-            this.AdditionalServicesPanel.Name = "AdditionalServicesPanel";
-            this.AdditionalServicesPanel.SizeF = new System.Drawing.SizeF(771F, 147.1201F);
-            this.AdditionalServicesPanel.StylePriority.UseBorders = false;
-            // 
-            // RemarksPanel
-            // 
-            this.RemarksPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.RemarksPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel20,
-            this.lblAllertec,
-            this.xrLabel11,
-            this.xrLabel10,
-            this.xrLabel9,
-            this.SealingLabel,
-            this.CO2Label,
-            this.xrCheckBox2,
-            this.xrCheckBox1});
-            this.RemarksPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 841.7025F);
-            this.RemarksPanel.Name = "RemarksPanel";
-            this.RemarksPanel.SizeF = new System.Drawing.SizeF(770.9989F, 75F);
-            this.RemarksPanel.StylePriority.UseBorders = false;
-            // 
-            // DatePanel
-            // 
-            this.DatePanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.DatePanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel13,
-            this.xrLabel14});
-            this.DatePanel.LocationFloat = new DevExpress.Utils.PointFloat(385.5001F, 916.7025F);
-            this.DatePanel.Name = "DatePanel";
-            this.DatePanel.SizeF = new System.Drawing.SizeF(385.5F, 60.83337F);
-            this.DatePanel.StylePriority.UseBorders = false;
-            // 
-            // CleanerPanel
-            // 
-            this.CleanerPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.CleanerPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel12});
-            this.CleanerPanel.LocationFloat = new DevExpress.Utils.PointFloat(6.357829E-05F, 916.7025F);
-            this.CleanerPanel.Name = "CleanerPanel";
-            this.CleanerPanel.SizeF = new System.Drawing.SizeF(385.5F, 60.83337F);
-            this.CleanerPanel.StylePriority.UseBorders = false;
-            // 
-            // DriverPanel
-            // 
-            this.DriverPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.DriverPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel16});
-            this.DriverPanel.LocationFloat = new DevExpress.Utils.PointFloat(385.5F, 1017.744F);
-            this.DriverPanel.Name = "DriverPanel";
-            this.DriverPanel.SizeF = new System.Drawing.SizeF(385.5F, 75F);
-            this.DriverPanel.StylePriority.UseBorders = false;
-            // 
-            // CleaningStationPanel
-            // 
-            this.CleaningStationPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.CleaningStationPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel15});
-            this.CleaningStationPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1017.744F);
-            this.CleaningStationPanel.Name = "CleaningStationPanel";
-            this.CleaningStationPanel.SizeF = new System.Drawing.SizeF(385.5F, 75F);
-            this.CleaningStationPanel.StylePriority.UseBorders = false;
             // 
             // CompanyTelLabel
             // 
@@ -363,6 +213,16 @@
             this.Logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
             this.Logo.StylePriority.UseBorders = false;
             // 
+            // xrPanel1
+            // 
+            this.xrPanel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel1});
+            this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(385.4999F, 216.103F);
+            this.xrPanel1.Name = "xrPanel1";
+            this.xrPanel1.SizeF = new System.Drawing.SizeF(385.4999F, 48.75005F);
+            this.xrPanel1.StylePriority.UseBorders = false;
+            // 
             // xrLabel1
             // 
             this.xrLabel1.AutoWidth = true;
@@ -378,6 +238,16 @@
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.Text = "xrLabelCleaningOrderReference";
             // 
+            // CustomerReferencePanel
+            // 
+            this.CustomerReferencePanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.CustomerReferencePanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel2});
+            this.CustomerReferencePanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 216.103F);
+            this.CustomerReferencePanel.Name = "CustomerReferencePanel";
+            this.CustomerReferencePanel.SizeF = new System.Drawing.SizeF(385.5F, 48.75005F);
+            this.CustomerReferencePanel.StylePriority.UseBorders = false;
+            // 
             // xrLabel2
             // 
             this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -389,6 +259,17 @@
             this.xrLabel2.SizeF = new System.Drawing.SizeF(285.4141F, 20F);
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.Text = "xrLabel2";
+            // 
+            // IdentificationPanel
+            // 
+            this.IdentificationPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.IdentificationPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel17,
+            this.xrLabel4});
+            this.IdentificationPanel.LocationFloat = new DevExpress.Utils.PointFloat(385.4999F, 264.853F);
+            this.IdentificationPanel.Name = "IdentificationPanel";
+            this.IdentificationPanel.SizeF = new System.Drawing.SizeF(385.4986F, 107.9413F);
+            this.IdentificationPanel.StylePriority.UseBorders = false;
             // 
             // xrLabel17
             // 
@@ -417,6 +298,18 @@
             this.xrLabel4.StylePriority.UseBorders = false;
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.Text = "xrLabel4";
+            // 
+            // CustomerPanel
+            // 
+            this.CustomerPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.CustomerPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel19,
+            this.xrLabel18,
+            this.xrLabel3});
+            this.CustomerPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 264.853F);
+            this.CustomerPanel.Name = "CustomerPanel";
+            this.CustomerPanel.SizeF = new System.Drawing.SizeF(385.5F, 97.94128F);
+            this.CustomerPanel.StylePriority.UseBorders = false;
             // 
             // xrLabel19
             // 
@@ -460,6 +353,16 @@
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.Text = "xrLabel3";
             // 
+            // NextLoadPanel
+            // 
+            this.NextLoadPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.NextLoadPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel6});
+            this.NextLoadPanel.LocationFloat = new DevExpress.Utils.PointFloat(385.4999F, 372.7943F);
+            this.NextLoadPanel.Name = "NextLoadPanel";
+            this.NextLoadPanel.SizeF = new System.Drawing.SizeF(385.4987F, 74.99985F);
+            this.NextLoadPanel.StylePriority.UseBorders = false;
+            // 
             // xrLabel6
             // 
             this.xrLabel6.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -472,6 +375,16 @@
             this.xrLabel6.StylePriority.UseFont = false;
             this.xrLabel6.Text = "xrLabel6";
             // 
+            // NatureOfProductPanel
+            // 
+            this.NatureOfProductPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.NatureOfProductPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel5});
+            this.NatureOfProductPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 372.7943F);
+            this.NatureOfProductPanel.Name = "NatureOfProductPanel";
+            this.NatureOfProductPanel.SizeF = new System.Drawing.SizeF(385.5F, 74.99982F);
+            this.NatureOfProductPanel.StylePriority.UseBorders = false;
+            // 
             // xrLabel5
             // 
             this.xrLabel5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -483,6 +396,17 @@
             this.xrLabel5.SizeF = new System.Drawing.SizeF(285.4166F, 23.33334F);
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.Text = "xrLabel5";
+            // 
+            // CleaningProceduresPanel
+            // 
+            this.CleaningProceduresPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.CleaningProceduresPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel22,
+            this.xrLabel7});
+            this.CleaningProceduresPanel.LocationFloat = new DevExpress.Utils.PointFloat(416.75F, 447.7941F);
+            this.CleaningProceduresPanel.Name = "CleaningProceduresPanel";
+            this.CleaningProceduresPanel.SizeF = new System.Drawing.SizeF(354.2499F, 246.7882F);
+            this.CleaningProceduresPanel.StylePriority.UseBorders = false;
             // 
             // xrLabel22
             // 
@@ -507,6 +431,25 @@
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.Text = "xrLabel7";
             // 
+            // PreviousLoadPanel
+            // 
+            this.PreviousLoadPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.PreviousLoadPanel.CanGrow = false;
+            this.PreviousLoadPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 447.7941F);
+            this.PreviousLoadPanel.Name = "PreviousLoadPanel";
+            this.PreviousLoadPanel.SizeF = new System.Drawing.SizeF(416.75F, 246.7882F);
+            this.PreviousLoadPanel.StylePriority.UseBorders = false;
+            // 
+            // AdditionalServicesPanel
+            // 
+            this.AdditionalServicesPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.AdditionalServicesPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel8});
+            this.AdditionalServicesPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 694.5824F);
+            this.AdditionalServicesPanel.Name = "AdditionalServicesPanel";
+            this.AdditionalServicesPanel.SizeF = new System.Drawing.SizeF(771F, 147.1201F);
+            this.AdditionalServicesPanel.StylePriority.UseBorders = false;
+            // 
             // xrLabel8
             // 
             this.xrLabel8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -518,6 +461,24 @@
             this.xrLabel8.SizeF = new System.Drawing.SizeF(625.0836F, 104.8286F);
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.Text = "xrLabel8";
+            // 
+            // RemarksPanel
+            // 
+            this.RemarksPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.RemarksPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel20,
+            this.lblAllertec,
+            this.xrLabel11,
+            this.xrLabel10,
+            this.xrLabel9,
+            this.SealingLabel,
+            this.CO2Label,
+            this.xrCheckBox2,
+            this.xrCheckBox1});
+            this.RemarksPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 841.7025F);
+            this.RemarksPanel.Name = "RemarksPanel";
+            this.RemarksPanel.SizeF = new System.Drawing.SizeF(770.9989F, 75F);
+            this.RemarksPanel.StylePriority.UseBorders = false;
             // 
             // xrLabel20
             // 
@@ -624,6 +585,17 @@
             this.xrCheckBox1.StylePriority.UseFont = false;
             this.xrCheckBox1.Text = "Millipore";
             // 
+            // DatePanel
+            // 
+            this.DatePanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.DatePanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel13,
+            this.xrLabel14});
+            this.DatePanel.LocationFloat = new DevExpress.Utils.PointFloat(385.5001F, 916.7025F);
+            this.DatePanel.Name = "DatePanel";
+            this.DatePanel.SizeF = new System.Drawing.SizeF(385.5F, 60.83337F);
+            this.DatePanel.StylePriority.UseBorders = false;
+            // 
             // xrLabel13
             // 
             this.xrLabel13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -650,6 +622,16 @@
             this.xrLabel14.Text = "xrLabel14";
             this.xrLabel14.TextFormatString = "{0:dd/MM/yyyy H:mm:ss}";
             // 
+            // CleanerPanel
+            // 
+            this.CleanerPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.CleanerPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel12});
+            this.CleanerPanel.LocationFloat = new DevExpress.Utils.PointFloat(6.357829E-05F, 916.7025F);
+            this.CleanerPanel.Name = "CleanerPanel";
+            this.CleanerPanel.SizeF = new System.Drawing.SizeF(385.5F, 60.83337F);
+            this.CleanerPanel.StylePriority.UseBorders = false;
+            // 
             // xrLabel12
             // 
             this.xrLabel12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -661,6 +643,16 @@
             this.xrLabel12.SizeF = new System.Drawing.SizeF(285.4167F, 27.49982F);
             this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.Text = "xrLabel12";
+            // 
+            // DriverPanel
+            // 
+            this.DriverPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.DriverPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel16});
+            this.DriverPanel.LocationFloat = new DevExpress.Utils.PointFloat(385.5F, 1017.744F);
+            this.DriverPanel.Name = "DriverPanel";
+            this.DriverPanel.SizeF = new System.Drawing.SizeF(385.5F, 75F);
+            this.DriverPanel.StylePriority.UseBorders = false;
             // 
             // xrLabel16
             // 
@@ -676,6 +668,16 @@
             this.xrLabel16.StylePriority.UseFont = false;
             this.xrLabel16.Text = "xrLabel16";
             // 
+            // CleaningStationPanel
+            // 
+            this.CleaningStationPanel.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.CleaningStationPanel.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel15});
+            this.CleaningStationPanel.LocationFloat = new DevExpress.Utils.PointFloat(0F, 1017.744F);
+            this.CleaningStationPanel.Name = "CleaningStationPanel";
+            this.CleaningStationPanel.SizeF = new System.Drawing.SizeF(385.5F, 75F);
+            this.CleaningStationPanel.StylePriority.UseBorders = false;
+            // 
             // xrLabel15
             // 
             this.xrLabel15.Borders = DevExpress.XtraPrinting.BorderSide.None;
@@ -689,6 +691,16 @@
             this.xrLabel15.StylePriority.UseBorders = false;
             this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.Text = "xrLabel15";
+            // 
+            // BottomMargin
+            // 
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel21,
+            this.xrPageInfo1});
+            this.BottomMargin.HeightF = 31.95837F;
+            this.BottomMargin.Name = "BottomMargin";
+            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrLabel21
             // 
@@ -731,18 +743,6 @@
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
-            // 
-            // CompanyID
-            // 
-            this.CompanyID.Name = "CompanyID";
-            this.CompanyID.Type = typeof(short);
-            this.CompanyID.ValueInfo = "90";
-            // 
-            // CleaningOrderID
-            // 
-            this.CleaningOrderID.Name = "CleaningOrderID";
-            this.CleaningOrderID.Type = typeof(int);
-            this.CleaningOrderID.ValueInfo = "27";
             // 
             // EurotracsCleaningDocumentReport
             // 

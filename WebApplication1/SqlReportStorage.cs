@@ -26,51 +26,59 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
 
         if (!File.Exists(path))
             throw new FileNotFoundException($"Report file not found: {path}");
-        XtraReport report = url.ToLower() switch
-        {
-            "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
-            "eurotracscleaningdocumentreport_default" => new EurotracsCleaningDocumentReport(),
-            "eurotracscleaningdocumentsubreport" => new EurotracsCleaningDocumentSubReport(),
-            _ => throw new Exception("Unknown report")
-        };
 
-        report.LoadLayoutFromXml(path);
-        using var ms = new MemoryStream();
-        report.SaveLayoutToXml(ms);
-        return ms.ToArray();
-        //XtraReport report = url.ToLower() switch
-        //{
-        //    "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
-        //    _ => throw new Exception("Unknown report")
-        //};
-
-        //using var ms = new MemoryStream();
-        //report.SaveLayoutToXml(ms);
-        //return ms.ToArray();
-
-        //var parts = url.Split("::", StringSplitOptions.RemoveEmptyEntries);
-        //var baseUrl = parts[0];
-        //var mode = parts.Length > 1 ? parts[1].ToLower() : "default";
-
-        //using var conn = new SqlConnection(connectionString);
-        //conn.Open();
-
-        //string query = mode == "latest"
-        //    ? "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 0 ORDER BY UpdatedAt DESC"
-        //    : "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 1 ORDER BY UpdatedAt DESC";
-
-        //using var cmd = new SqlCommand(query, conn);
-        //cmd.Parameters.AddWithValue("@Url", baseUrl);
-
-        //var result = cmd.ExecuteScalar();
-
-        //return result is byte[] layoutBytes
-        //    ? layoutBytes
-        //    : throw new FaultException($"Report '{baseUrl}' not found with mode '{mode}'.");
-
-
-
+        return File.ReadAllBytes(path); // ✅ read raw bytes only
     }
+
+    //public override byte[] GetData(string url)
+    //{
+    //    var path = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports", url + ".repx");
+
+    //    if (!File.Exists(path))
+    //        throw new FileNotFoundException($"Report file not found: {path}");
+    //    XtraReport report = url.ToLower() switch
+    //    {
+    //        "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
+    //        "eurotracscleaningdocumentreport_default" => new EurotracsCleaningDocumentReport(),
+    //        "eurotracscleaningdocumentsubreport" => new EurotracsCleaningDocumentSubReport(),
+    //        _ => throw new Exception("Unknown report")
+    //    };
+
+    //    report.LoadLayoutFromXml(path);
+    //    return File.ReadAllBytes(path);
+    //    //XtraReport report = url.ToLower() switch
+    //    //{
+    //    //    "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
+    //    //    _ => throw new Exception("Unknown report")
+    //    //};
+
+    //    //using var ms = new MemoryStream();
+    //    //report.SaveLayoutToXml(ms);
+    //    //return ms.ToArray();
+
+    //    //var parts = url.Split("::", StringSplitOptions.RemoveEmptyEntries);
+    //    //var baseUrl = parts[0];
+    //    //var mode = parts.Length > 1 ? parts[1].ToLower() : "default";
+
+    //    //using var conn = new SqlConnection(connectionString);
+    //    //conn.Open();
+
+    //    //string query = mode == "latest"
+    //    //    ? "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 0 ORDER BY UpdatedAt DESC"
+    //    //    : "SELECT TOP 1 ReportLayout FROM ReportStorage WHERE Url = @Url AND IsDefault = 1 ORDER BY UpdatedAt DESC";
+
+    //    //using var cmd = new SqlCommand(query, conn);
+    //    //cmd.Parameters.AddWithValue("@Url", baseUrl);
+
+    //    //var result = cmd.ExecuteScalar();
+
+    //    //return result is byte[] layoutBytes
+    //    //    ? layoutBytes
+    //    //    : throw new FaultException($"Report '{baseUrl}' not found with mode '{mode}'.");
+
+
+
+    //}
 
 
     public override Dictionary<string, string> GetUrls()
@@ -175,25 +183,30 @@ public class SqlReportStorage(string? connectionString) : ReportStorageWebExtens
 }
 public class CustomReportProvider : IReportProvider
 {
-    public XtraReport GetReport(string url, ReportProviderContext context)
-    {
-        Console.WriteLine($"[CustomReportProvider] Loading report for: {url}");
-        XtraReport report = url.ToLower() switch
+    
+        public XtraReport GetReport(string url, ReportProviderContext context)
         {
-            "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
-            "eurotracscleaningdocumentreport_default" => new EurotracsCleaningDocumentReport(),
-            "eurotracscleaningdocumentsubreport" => new EurotracsCleaningDocumentSubReport(),
-            _ => throw new Exception("Unknown report")
-        };
-        var path = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports", url + ".repx");
-        report.LoadLayoutFromXml(path);
-        return report;
-    }
+            Console.WriteLine($"[CustomReportProvider] Resolving report: {url}");
+
+            XtraReport report = url.ToLower() switch
+            {
+                "eurotracscleaningdocumentreport" => new EurotracsCleaningDocumentReport(),
+                "eurotracscleaningdocumentreport_default" => new EurotracsCleaningDocumentReport(),
+                "eurotracscleaningdocumentsubreport" => new EurotracsCleaningDocumentSubReport(),
+                _ => throw new Exception("Unknown report URL: " + url)
+            };
+
+            var path = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports", url + ".repx");
+            report.LoadLayoutFromXml(path);
+            return report;
+        }
+   
+
 
 
     public XtraReport GetReport(string id)
     {
-        throw new NotImplementedException();
+        return GetReport(id, null!);
     }
 }
 

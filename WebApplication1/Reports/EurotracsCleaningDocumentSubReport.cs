@@ -12,7 +12,7 @@ namespace WebApplication1.Reports
         public EurotracsCleaningDocumentSubReport()
         {
             InitializeComponent();
-            SaveLayoutToXml(RepxPath);
+          //  SaveLayoutToXml(RepxPath);
         }
 
         //protected override void OnBeforePrint(PrintEventArgs e)

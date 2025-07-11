@@ -51,33 +51,71 @@ public class ReportController : Controller
     }
 
 
+    //[HttpPost]
+    //public IActionResult Print(string reportUrl, string version)
+    //{
+    //    var useDefault = version == "default";
+
+    //    // Construct file path to the .repx file
+    //    var reportsDirectory = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports");
+    //    var reportFileName = useDefault
+    //        ? $"{reportUrl}_default.repx"
+    //        : $"{reportUrl}.repx";
+
+    //    var reportPath = Path.Combine(reportsDirectory, reportFileName);
+
+    //    if (!System.IO.File.Exists(reportPath))
+    //        return NotFound("Report layout not found");
+    //    var report = new EurotracsCleaningDocumentReport();
+
+    //    //var report = new XtraReport();
+    //    //report.LoadLayoutFromXml(reportPath);
+    //    ((IServiceContainer)report).RemoveService(typeof(IReportProvider));
+    //    ((IServiceContainer)report).AddService(typeof(IReportProvider), _reportProvider);
+    //    report.CreateDocument();
+    //    using (var ms = new MemoryStream())
+    //    {
+    //        report.ExportToPdf(ms);
+    //        ms.Position = 0;
+    //        return File(ms.ToArray(), "application/pdf", $"{reportUrl}.pdf");
+    //    }
+    //}
     [HttpPost]
     public IActionResult Print(string reportUrl, string version)
     {
         var useDefault = version == "default";
+        var resolvedUrl = useDefault ? $"{reportUrl}_default" : reportUrl;
+        var reportsDirectory = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports", $"{resolvedUrl}.repx");
 
-        // Construct file path to the .repx file
-        var reportsDirectory = Path.Combine("D:\\FleetGo\\POC - Client Designer\\New Designer\\NewDesigner\\WebApplication1\\Reports");
-        var reportFileName = useDefault
-            ? $"{reportUrl}_default.repx"
-            : $"{reportUrl}.repx";
+        // Use your registered IReportProvider to load the full report hierarchy
+        var report = (_reportProvider as CustomReportProvider)?.GetReport(resolvedUrl)
+                     ?? throw new Exception("ReportProvider not available.");
+        //if (report is EurotracsCleaningDocumentReport typedReport)
+        //    typedReport.LoadLayoutAndInjectEvents(reportsDirectory);
+        //else
+        //    report.LoadLayoutFromXml(reportsDirectory); // fallback for generic report
 
-        var reportPath = Path.Combine(reportsDirectory, reportFileName);
+        InjectProviderRecursive(report);
+        using var ms = new MemoryStream();
+        report.ExportToPdf(ms);
+        ms.Position = 0;
 
-        if (!System.IO.File.Exists(reportPath))
-            return NotFound("Report layout not found");
-        //var report = new EurotracsCleaningDocumentReport();
+        return File(ms.ToArray(), "application/pdf", $"{reportUrl}.pdf");
+    }
+    private void InjectProviderRecursive(XtraReport report)
+    {
+        if (report == null) return;
 
-        var report = new EurotracsCleaningDocumentReport();
-        report.LoadLayoutFromXml(reportPath);
-        ((IServiceContainer)report).RemoveService(typeof(IReportProvider));
-        ((IServiceContainer)report).AddService(typeof(IReportProvider), _reportProvider);
-        report.CreateDocument();
-        using (var ms = new MemoryStream())
+        var container = (IServiceContainer)report;
+        container.RemoveService(typeof(IReportProvider));
+        container.AddService(typeof(IReportProvider), _reportProvider);
+
+        foreach (var control in report.AllControls<XRSubreport>())
         {
-            report.ExportToPdf(ms);
-            ms.Position = 0;
-            return File(ms.ToArray(), "application/pdf", $"{reportUrl}.pdf");
+            if (control.ReportSource is XtraReport subReport)
+            {
+                InjectProviderRecursive(subReport);
+            }
         }
     }
     //[HttpPost]

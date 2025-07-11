@@ -14,45 +14,63 @@ namespace WebApplication1.Reports
         public EurotracsCleaningDocumentReport()
         {
             InitializeComponent();
-                // SaveLayoutToXml(RepxPath);
             InjectEvents();
         }
 
         private void InjectEvents()
         {
-            SubReportCompartments.BeforePrint += SubReportCompartments_BeforePrint;
+            BeforePrint += On_BeforePrint;
+        }
+        public void LoadLayoutAndInjectEvents(string layoutPath)
+        {
+            this.LoadLayoutFromXml(layoutPath); // Load layout
+            InjectEvents();                     // Hook events after loading
         }
 
 
         public void SetCompanyInfo(ReportCompanyDTO companyinfo)
         {
-            //Logo.Image = companyinfo.CompanyLogo;
-            CompanyNameLabel.Text = companyinfo.CompanyName;
-            CompanyStreetLabel.Text = companyinfo.CompanyStreet;
-            CompanyCityLabel.Text = $@"{companyinfo.CompanyCountryCode}-{companyinfo.CompanyCityPostCode} {companyinfo.CompanyCityName}";
-            CompanyTelLabel.Text = companyinfo.CompanyTelephone;
-        }
 
-        private void SubReportCompartments_BeforePrint(object sender,CancelEventArgs e)
-        {
-            var subreportControl = (XRSubreport)sender;
+            // Always use FindControl after LoadLayoutFromXml
+            var nameLabel = FindControl("CompanyNameLabel", true) as XRLabel;
+            var streetLabel = FindControl("CompanyStreetLabel", true) as XRLabel;
+            var cityLabel = FindControl("CompanyCityLabel", true) as XRLabel;
+            var telLabel = FindControl("CompanyTelLabel", true) as XRLabel;
+            var logoImage = FindControl("Logo", true) as XRPictureBox;
 
-            // This is the report automatically loaded from ReportSourceUrl
-            if (subreportControl.ReportSource != null)
+            if (nameLabel != null)
             {
-                var subReport = subreportControl.ReportSource;
-
-                subReport.Parameters["CompID"].Value = Convert.ToInt32(GetCurrentColumnValue("CompanyID"));
-                subReport.Parameters["CleanID"].Value = Convert.ToInt32(GetCurrentColumnValue("CleaningOrderID"));
-                subReport.RequestParameters = false;
+                nameLabel.ExpressionBindings.Clear();
+                nameLabel.Text = companyinfo.CompanyName;
             }
+
+            if (streetLabel != null)
+                streetLabel.Text = companyinfo.CompanyStreet;
+
+            if (cityLabel != null)
+                cityLabel.Text = $"{companyinfo.CompanyCountryCode}-{companyinfo.CompanyCityPostCode} {companyinfo.CompanyCityName}";
+
+            if (telLabel != null)
+                telLabel.Text = companyinfo.CompanyTelephone;
+
+            if (logoImage != null && companyinfo.CompanyLogo != null)
+                logoImage.Image = companyinfo.CompanyLogo;
         }
 
-        /*private T GetCurrentRowValue<T>(string columnName)
+        private void On_BeforePrint(object sender,CancelEventArgs e)
         {
-            return EurotracsCleaningDocumentDataSet.spEurotracsCleaningDocumentCompartmentSelect.Rows.Count > 0
-                ? EurotracsCleaningDocumentDataSet.spEurotracsCleaningDocumentCompartmentSelect.Rows[0].Field<T>(columnName)
-                : default(T); // Will return null of T is a reference type
-        }*/
+            //var subreport = sender as XRSubreport;
+            //if (string.IsNullOrEmpty(subreport?.ReportSourceUrl)) return; // Use ReportSourceUrl, NOT ReportSource
+
+            //// This is the report automatically loaded from ReportSourceUrl
+            //if (subreport.ReportSource is XtraReport sub)
+            //{
+            //    sub.Parameters["CompID"].Value = Convert.ToInt32(GetCurrentColumnValue("CompanyID"));
+            //    sub.Parameters["CleanID"].Value = Convert.ToInt32(GetCurrentColumnValue("CleaningOrderID"));
+            //    sub.RequestParameters = false;
+            //}
+            SetCompanyInfo(new ReportCompanyDTO("Eurotracs", "Sluizeken", "Zottegem", "9620", "BE", "BELGIUM", "13"));
+
+        }
     }
 }
